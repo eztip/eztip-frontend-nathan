@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
+import { Route } from "react-router-dom";
 
 import { authenticate } from "./component/container/authenticate";
 
@@ -8,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <DisplayedComponent />
+        <Route path="/" render={props => <DisplayedComponent {...props} />} />
       </div>
     );
   }

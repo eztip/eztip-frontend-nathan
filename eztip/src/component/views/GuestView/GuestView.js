@@ -6,7 +6,7 @@ import { EmployeeList } from "../../container/EmployeeList";
 const GuestView = props => {
   return (
     <div>
-      <EmployeeList />
+      <h1>GuestView</h1>
     </div>
   );
 };

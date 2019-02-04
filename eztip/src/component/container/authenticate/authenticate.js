@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 
 import { LoginView } from "../../views/LoginView";
 import { HomeView } from "../../views/HomeView";
 
 const authenticate = HomeView => LoginView => {
   return class extends Component {
-    static propTypes = {
-      prop: PropTypes
-    };
-
     render() {
       return this.props.loggedIn ? <HomeView /> : <LoginView />;
     }
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    state: state.loginReducer.loggedIn
-  };
+authenticate.propTypes = {
+  loggedIn: PropTypes.bool.isRequired
 };
 
-export default authenticate(HomeView)(LoginView);
+const mapStateToProps = state => ({
+  loggedIn: state.loginReducer.loggedIn
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(authenticate(HomeView)(LoginView));

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const EmployeeView = props => {
   return (
     <div>
-      <div />
+      <h1>EmployeeView</h1>
     </div>
   );
 };

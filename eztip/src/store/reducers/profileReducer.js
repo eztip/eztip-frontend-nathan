@@ -1,12 +1,10 @@
-import { LOGIN, UPDATE_LOGIN_FORM, CLEAR_LOGIN_FORM } from "../types";
+import { LOGIN } from "../types";
 
 const initialState = {
-  loggedIn: false,
-  loginUsername: "",
-  loginPassword: ""
+  loggedIn: false
 };
 
-export const loginReducer = (state = initialState, action) => {
+export const employeeReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
       return {

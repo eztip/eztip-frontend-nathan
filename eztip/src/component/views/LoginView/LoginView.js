@@ -1,14 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const LoginView = props => {
+import { LoginForm } from "../../presentational/LoginForm";
+
+const LoginView = () => {
   return (
     <div>
-      <p>LoginView</p>
+      <LoginForm />
     </div>
   );
 };
-
-LoginView.propTypes = {};
 
 export default LoginView;
