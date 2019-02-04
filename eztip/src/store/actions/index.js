@@ -5,7 +5,10 @@ import {
   CLEAR_LOGIN_FORM,
   GET_PROFILE_START,
   GET_PROFILE_SUCCESS,
-  GET_PROFILE_ERROR
+  GET_PROFILE_ERROR,
+  GET_PROFILES_START,
+  GET_PROFILES_SUCCESS,
+  GET_PROFILES_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -17,6 +20,18 @@ export const getUserByID = id => dispatch => {
     })
     .catch(err => {
       dispatch({ type: GET_PROFILE_ERROR, payload: err.data });
+    });
+};
+
+export const getUsers = () => dispatch => {
+  dispatch({ type: GET_PROFILES_START });
+  axios
+    .get("https://eztip.herokuapp.com/workers")
+    .then(res => {
+      dispatch({ type: GET_PROFILES_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_PROFILES_ERROR, payload: err.data });
     });
 };
 
