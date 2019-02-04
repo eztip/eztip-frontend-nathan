@@ -23,6 +23,7 @@ const LoginForm = props => {
     <form className="login__form" onSubmit={submitForm}>
       <h2>Please Login</h2>
       <input
+        required
         type="text"
         name="loginUsername"
         value={props.loginUsername}
@@ -30,6 +31,7 @@ const LoginForm = props => {
         onChange={handleChange}
       />
       <input
+        required
         type="text"
         name="loginPassword"
         value={props.loginPassword}
@@ -50,8 +52,8 @@ LoginForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loginUsername: state.loginReducer.loginUsername,
-  loginPassword: state.loginReducer.loginPassword
+  loginUsername: state.userReducer.loginUsername,
+  loginPassword: state.userReducer.loginPassword
 });
 
 const mapActionsToProps = {

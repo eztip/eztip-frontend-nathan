@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
 
 import { LoginView } from "../../views/LoginView";
 import { HomeView } from "../../views/HomeView";
@@ -19,7 +18,7 @@ authenticate.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  loggedIn: state.loginReducer.loggedIn
+  loggedIn: state.userReducer.loggedIn
 });
 
 export default connect(

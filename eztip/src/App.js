@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import "./App.css";
 import { Route } from "react-router-dom";
 
@@ -17,13 +16,4 @@ class App extends Component {
 
 const DisplayedComponent = authenticate;
 
-const mapStateToProps = state => {
-  return {
-    state: state.loginReducer.loggedIn
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {}
-)(App);
+export default App;

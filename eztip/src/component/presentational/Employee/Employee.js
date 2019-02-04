@@ -1,6 +1,7 @@
 import React from "react";
 
-const Employee = () => {
+const Employee = props => {
+  console.log(props);
   return (
     <div>
       <div />
