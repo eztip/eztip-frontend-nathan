@@ -9,6 +9,6 @@ const EmployeeCard = props => {
   );
 };
 
-EmployeeProfile.propTypes = {};
+EmployeeCard.propTypes = {};
 
 export default EmployeeCard;

@@ -17,7 +17,10 @@ const LoginForm = props => {
   };
   const submitForm = e => {
     e.preventDefault();
-    props.loginSite();
+    props.loginSite({
+      username: props.loginUsername,
+      password: props.loginPassword
+    });
     props.history.push("/");
   };
   return (
