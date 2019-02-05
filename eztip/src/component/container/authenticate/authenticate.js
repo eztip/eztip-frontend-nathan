@@ -11,7 +11,7 @@ const authenticate = HomeView => LoginView => {
       return this.props.loggedIn ? (
         <HomeView match={this.props.match} history={this.props.history} />
       ) : (
-        <LoginView />
+        <LoginView match={this.props.match} history={this.props.history} />
       );
     }
   };

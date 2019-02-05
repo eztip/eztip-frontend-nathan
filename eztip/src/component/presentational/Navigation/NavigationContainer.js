@@ -6,10 +6,11 @@ const NavigationContainer = props => {
     e.preventDefault();
     localStorage.clear();
     console.log("Working!");
+    props.history.push("/");
   };
   return (
     <div className="navigation__container">
-      <Link to="/login">
+      <Link to="/">
         <button onClick={logout}>Logout</button>
       </Link>
     </div>

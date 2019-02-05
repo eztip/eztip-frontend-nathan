@@ -9,7 +9,7 @@ export default class PaymentView extends Component {
   render() {
     return (
       <div>
-        <div />
+        <p>Payment!</p>
       </div>
     );
   }

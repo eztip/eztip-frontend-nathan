@@ -26,7 +26,11 @@ class LoginForm extends Component {
       username: this.state.loginUsername,
       password: this.state.loginPassword
     });
+    this.props.history.push("/welcome");
   };
+  componentDidMount() {
+    this.props.history.push("/login");
+  }
   render() {
     return (
       <form className="login__form" onSubmit={this.submitForm}>

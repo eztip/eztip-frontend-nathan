@@ -9,7 +9,14 @@ const EmployeeListContainer = props => {
     <div className="employee-list__container">
       <h1>Select an Employee to Tip:</h1>
       {employees.map((employee, index) => {
-        return <EmployeeCard employee={employee} key={index} />;
+        return (
+          <EmployeeCard
+            match={props.match}
+            history={props.history}
+            employee={employee}
+            key={index}
+          />
+        );
       })}
     </div>
   );

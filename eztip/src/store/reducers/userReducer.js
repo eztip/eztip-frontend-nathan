@@ -12,7 +12,7 @@ import {
 } from "../types";
 
 const initialState = {
-  isAUser: true,
+  isAUser: null,
   loginUsername: "",
   loginPassword: "",
   employee: {},
@@ -53,10 +53,10 @@ export const userReducer = (state = initialState, action) => {
     case GET_USERS_START:
       return state;
     case GET_USERS_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
-        users: action.payload
+        users: action.payload,
+        isAUser: action.payload.user_type
       };
     case GET_USERS_ERROR:
       return {
@@ -70,12 +70,12 @@ export const userReducer = (state = initialState, action) => {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
+      console.log(action.payload);
       return {
         ...state,
         token: action.payload.token,
         loginMessage: action.payload.loginMessage,
-        loggedIn: true,
-        loggingInUser: false
+        loggedIn: true
       };
     case LOGIN_ERROR:
       localStorage.clear();

@@ -9,19 +9,28 @@ class HomeView extends Component {
   componentDidMount() {
     this.props.getUsers();
   }
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.isAUser !== this.props.isAUser) {
+      this.props.isAUser === "employee"
+        ? this.props.history.push("/welcome/employee")
+        : this.props.history.push("/welcome/guest");
+    }
+  }
   render() {
+    console.log("Rendering!");
     return (
       <div className="home__container">
         <h1>Welcome!</h1>
         <Route
-          exact
-          path="/employee/:id"
+          path="/welcome/employee"
           render={props => (
             <EmployeeView {...props} employee={this.props.employee} />
           )}
         />
-        <Route exact path="/" render={props => <GuestView {...props} />} />
+        <Route
+          path="/welcome/guest"
+          render={props => <GuestView {...props} />}
+        />
       </div>
     );
   }

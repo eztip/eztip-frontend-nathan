@@ -9,7 +9,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavigationContainer />
+        <NavigationContainer
+          match={this.props.match}
+          history={this.props.history}
+        />
         <DisplayedComponent
           match={this.props.match}
           history={this.props.history}

@@ -6,7 +6,7 @@ class LoginView extends Component {
   render() {
     return (
       <div>
-        <LoginForm />
+        <LoginForm match={this.props.match} history={this.props.history} />
       </div>
     );
   }
