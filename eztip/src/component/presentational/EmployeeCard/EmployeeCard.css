@@ -1,0 +1,6 @@
+.employee__card {
+  width: 50%;
+  height: 200px;
+  border: 1px solid red;
+  margin: 0 auto;
+}

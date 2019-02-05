@@ -8,11 +8,6 @@ import { getUserByID, getUsers } from "../../../store/actions/index";
 class HomeView extends Component {
   componentDidMount() {
     this.props.getUsers();
-    //
-    // this.props.isAUser
-    //   ? this.props.history.push(`/employee/`)
-    //   : this.props.history.push("/guest");
-    // console.log("Employee", this.props.employee);
   }
 
   render() {

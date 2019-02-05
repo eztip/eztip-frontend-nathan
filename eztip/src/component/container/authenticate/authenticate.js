@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { LoginView } from "../../views/LoginView";
@@ -10,9 +9,9 @@ const authenticate = HomeView => LoginView => {
   return class extends Component {
     render() {
       return this.props.loggedIn ? (
-        <Route path="/" render={props => <HomeView {...props} />} />
+        <HomeView match={this.props.match} history={this.props.history} />
       ) : (
-        <Route path="/" render={props => <LoginView {...props} />} />
+        <LoginView />
       );
     }
   };

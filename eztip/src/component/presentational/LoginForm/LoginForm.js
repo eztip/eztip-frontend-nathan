@@ -1,54 +1,60 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  updateLoginForm,
-  loginSite,
-  clearLoginForm
-} from "../../../store/actions";
+import { loginSite } from "../../../store/actions";
 
-const LoginForm = props => {
-  const handleChange = e => {
-    props.updateLoginForm(e);
+class LoginForm extends Component {
+  state = {
+    loginUsername: "",
+    loginPassword: ""
   };
-  const clearForm = e => {
-    e.preventDefault();
-    props.clearLoginForm();
-  };
-  const submitForm = e => {
-    e.preventDefault();
-    props.loginSite({
-      username: props.loginUsername,
-      password: props.loginPassword
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     });
-    props.history.push("/");
   };
-  return (
-    <form className="login__form" onSubmit={submitForm}>
-      <h2>Please Login</h2>
-      <input
-        required
-        type="text"
-        name="loginUsername"
-        value={props.loginUsername}
-        placeholder="Username"
-        onChange={handleChange}
-      />
-      <input
-        required
-        type="text"
-        name="loginPassword"
-        value={props.loginPassword}
-        placeholder="Password"
-        onChange={handleChange}
-      />
-      <button stype="submit">Login</button>
-      <button type="button" onClick={clearForm}>
-        Clear
-      </button>
-    </form>
-  );
-};
+  clearForm = e => {
+    e.preventDefault();
+    this.setState({
+      loginUsername: "",
+      loginPassword: ""
+    });
+  };
+  submitForm = e => {
+    e.preventDefault();
+    this.props.loginSite({
+      username: this.state.loginUsername,
+      password: this.state.loginPassword
+    });
+  };
+  render() {
+    return (
+      <form className="login__form" onSubmit={this.submitForm}>
+        <h1>Please Login</h1>
+        <input
+          required
+          type="text"
+          name="loginUsername"
+          value={this.state.loginUsername}
+          placeholder="Username"
+          onChange={this.handleChange}
+        />
+        <input
+          required
+          type="text"
+          name="loginPassword"
+          value={this.state.loginPassword}
+          placeholder="Password"
+          onChange={this.handleChange}
+        />
+        <button stype="submit">Login</button>
+        <button type="button" onClick={this.clearForm}>
+          Clear
+        </button>
+      </form>
+    );
+  }
+}
 
 LoginForm.propTypes = {
   loginUsername: PropTypes.string,
@@ -61,9 +67,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  updateLoginForm,
-  loginSite,
-  clearLoginForm
+  loginSite
 };
 
 export default connect(

@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import { authenticate } from "./component/container/authenticate";
+import { NavigationContainer } from "./component/presentational/Navigation";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/" render={props => <DisplayedComponent {...props} />} />
+        <NavigationContainer />
+        <DisplayedComponent
+          match={this.props.match}
+          history={this.props.history}
+        />
       </div>
     );
   }

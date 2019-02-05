@@ -1,7 +1,5 @@
 // =========================================================== User Reducer Types
 export const LOGIN = "LOGIN";
-export const UPDATE_LOGIN_FORM = "UPDATE_LOGIN_FORM";
-export const CLEAR_LOGIN_FORM = "CLEAR_LOGIN_FORM";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_ERROR = "GET_USER_ERROR";

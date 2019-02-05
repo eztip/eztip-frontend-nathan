@@ -1,8 +1,5 @@
 import axios from "axios";
 import {
-  LOGIN,
-  UPDATE_LOGIN_FORM,
-  CLEAR_LOGIN_FORM,
   GET_USER_START,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
@@ -53,17 +50,4 @@ export const loginSite = credentials => dispatch => {
     .catch(err => {
       dispatch({ type: LOGIN_ERROR, payload: err.data });
     });
-};
-
-export const updateLoginForm = e => {
-  return {
-    type: UPDATE_LOGIN_FORM,
-    payload: e
-  };
-};
-
-export const clearLoginForm = () => {
-  return {
-    type: CLEAR_LOGIN_FORM
-  };
 };

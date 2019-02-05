@@ -1,7 +1,5 @@
 import {
   LOGIN,
-  UPDATE_LOGIN_FORM,
-  CLEAR_LOGIN_FORM,
   GET_USER_START,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
@@ -33,17 +31,6 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggedIn: true
-      };
-    case UPDATE_LOGIN_FORM:
-      return {
-        ...state,
-        [action.payload.target.name]: action.payload.target.value
-      };
-    case CLEAR_LOGIN_FORM:
-      return {
-        ...state,
-        loginUsername: "",
-        loginPassword: ""
       };
     case GET_USER_START:
       return {
@@ -91,6 +78,7 @@ export const userReducer = (state = initialState, action) => {
         loggingInUser: false
       };
     case LOGIN_ERROR:
+      localStorage.clear();
       return {
         ...state,
         loggingInUser: false,
