@@ -8,7 +8,7 @@ import { getUserByID, getUsers } from "../../../store/actions/index";
 class HomeView extends Component {
   componentDidMount() {
     this.props.getUsers();
-    // this.getEmployee(2);
+    this.props.getUserByID(2);
     //
     // this.props.isAUser
     //   ? this.props.history.push(`/employee/`)
@@ -19,6 +19,7 @@ class HomeView extends Component {
   render() {
     return (
       <div className="home__container">
+        <h1>Welcome!</h1>
         <Route
           exact
           path="/employee/:id"
@@ -26,7 +27,7 @@ class HomeView extends Component {
             <EmployeeView {...props} employee={this.props.employee} />
           )}
         />
-        <Route exact path="/guest" render={props => <GuestView {...props} />} />
+        <Route exact path="/" render={props => <GuestView {...props} />} />
       </div>
     );
   }

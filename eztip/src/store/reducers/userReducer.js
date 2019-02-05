@@ -4,15 +4,19 @@ import {
   CLEAR_LOGIN_FORM,
   GET_USER_START,
   GET_USER_SUCCESS,
-  GET_USER_ERROR
+  GET_USER_ERROR,
+  GET_USERS_START,
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR
 } from "../types";
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: true,
   isAUser: true,
   loginUsername: "",
   loginPassword: "",
   employee: {},
+  users: [],
   loadingEmployee: false,
   employeeLoaded: false
 };
@@ -52,6 +56,19 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingEmployee: false
+      };
+    case GET_USERS_START:
+      return state;
+    case GET_USERS_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        users: action.payload
+      };
+    case GET_USERS_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;
