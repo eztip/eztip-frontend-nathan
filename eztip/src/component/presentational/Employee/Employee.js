@@ -11,6 +11,10 @@ const Employee = props => {
       <p className="tagline">Tagline: {props.employee.tagline}</p>
       <p>ID: {props.employee.id}</p>
       <p>Employed Since: {props.employee.working_since}</p>
+      <div className="employee-profile__buttons">
+        <button type="button">Update</button>
+        <button type="button">Tips Received</button>
+      </div>
     </div>
   );
 };

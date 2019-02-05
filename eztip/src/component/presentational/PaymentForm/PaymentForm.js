@@ -6,8 +6,18 @@ class PaymentForm extends Component {
     payment: "",
     ccNumber: "",
     expiration: "",
-    verification: ""
+    verification: "",
+    match: null,
+    history: null,
+    id: null
   };
+  componentDidMount() {
+    this.setState({
+      match: this.props.match,
+      history: this.props.history,
+      id: this.props.id
+    });
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -15,7 +25,7 @@ class PaymentForm extends Component {
   };
   cancel = e => {
     e.preventDefault();
-    this.props.history.push(`/welcome/guest/${props.id}`);
+    this.state.history.push(`/welcome/guest/${this.state.id}`);
   };
   render() {
     console.log(this.props);
@@ -58,7 +68,9 @@ class PaymentForm extends Component {
           onChange={this.handleChange}
         />
         <button type="submit">Send Tip</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={this.cancel}>
+          Cancel
+        </button>
       </form>
     );
   }
