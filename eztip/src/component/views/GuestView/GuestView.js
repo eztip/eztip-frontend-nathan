@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { EmployeeListContainer } from "../../container/EmployeeListContainer";
 import { EmployeeCard } from "../../presentational/EmployeeCard";
 import { Route } from "react-router-dom";
-import { PaymentView } from "../PaymentView";
+import { PaymentFormContainer } from "../../container/PaymentFormContainer";
 
 const GuestView = props => {
   const users = props.users;
@@ -21,8 +21,8 @@ const GuestView = props => {
         render={props => <EmployeeCard {...props} />}
       />
       <Route
-        path={"welcome/guest/:id/tip"}
-        render={props => <PaymentView {...props} />}
+        path={"/welcome/guest/:id/tip"}
+        render={props => <PaymentFormContainer {...props} />}
       />
     </div>
   );

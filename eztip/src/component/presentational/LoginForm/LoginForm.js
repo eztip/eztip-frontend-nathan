@@ -37,6 +37,7 @@ class LoginForm extends Component {
         <h1>Please Login</h1>
         <input
           required
+          autoComplete="off"
           type="text"
           name="loginUsername"
           value={this.state.loginUsername}
@@ -45,6 +46,7 @@ class LoginForm extends Component {
         />
         <input
           required
+          autoComplete="off"
           type="text"
           name="loginPassword"
           value={this.state.loginPassword}

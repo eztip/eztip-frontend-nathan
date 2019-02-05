@@ -44,7 +44,7 @@ export const loginSite = credentials => dispatch => {
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: { token: res.data.token, loginMessage: res.data.message }
+        payload: res.data
       });
     })
     .catch(err => {

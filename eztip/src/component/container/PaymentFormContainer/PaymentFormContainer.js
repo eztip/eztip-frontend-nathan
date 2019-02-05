@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { PaymentForm } from "../../presentational/PaymentForm";
+
 const PaymentFormContainer = props => {
+  const id = props.match.params.id;
   return (
-    <div>
-      <div />
+    <div className="payment-form__container">
+      <PaymentForm match={props.match} history={props.history} id={id} />
     </div>
   );
 };
 
-PaymentForm.propTypes = {};
+PaymentFormContainer.propTypes = {};
 
 export default PaymentFormContainer;

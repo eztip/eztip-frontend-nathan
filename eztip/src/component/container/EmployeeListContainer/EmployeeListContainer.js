@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { EmployeeCard } from "../../presentational/EmployeeCard";
-import { Route } from "react-router-dom";
 
 const EmployeeListContainer = props => {
   const employees = props.users.filter(user => user.user_type === "employee");

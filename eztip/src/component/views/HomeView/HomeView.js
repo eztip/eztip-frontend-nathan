@@ -3,29 +3,22 @@ import { Route } from "react-router-dom";
 import { EmployeeView } from "../EmployeeView";
 import { GuestView } from "../GuestView";
 import { connect } from "react-redux";
-import { getUserByID, getUsers } from "../../../store/actions/index";
+import { getUsers } from "../../../store/actions/index";
 
 class HomeView extends Component {
   componentDidMount() {
     this.props.getUsers();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.isAUser !== this.props.isAUser) {
-      this.props.isAUser === "employee"
-        ? this.props.history.push("/welcome/employee")
-        : this.props.history.push("/welcome/guest");
-    }
+    this.props.userType === "employee"
+      ? this.props.history.push("/welcome/employee")
+      : this.props.history.push("/welcome/guest");
   }
   render() {
-    console.log("Rendering!");
     return (
       <div className="home__container">
         <h1>Welcome!</h1>
         <Route
           path="/welcome/employee"
-          render={props => (
-            <EmployeeView {...props} employee={this.props.employee} />
-          )}
+          render={props => <EmployeeView {...props} />}
         />
         <Route
           path="/welcome/guest"
@@ -37,13 +30,10 @@ class HomeView extends Component {
 }
 
 const mapStateToProps = state => ({
-  employee: state.userReducer.employee,
-  isAUser: state.userReducer.isAUser,
-  id: state.userReducer.employee.id
+  userType: state.userReducer.userType
 });
 
 const mapActionsToProps = {
-  getUserByID,
   getUsers
 };
 

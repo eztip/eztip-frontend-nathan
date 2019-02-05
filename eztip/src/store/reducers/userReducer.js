@@ -1,5 +1,4 @@
 import {
-  LOGIN,
   GET_USER_START,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
@@ -12,11 +11,9 @@ import {
 } from "../types";
 
 const initialState = {
-  isAUser: null,
-  loginUsername: "",
-  loginPassword: "",
-  employee: {},
+  userType: null,
   users: [],
+  userProfile: {},
   loadingEmployee: false,
   employeeLoaded: false,
   loginMessage: null,
@@ -27,11 +24,6 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOGIN:
-      return {
-        ...state,
-        loggedIn: true
-      };
     case GET_USER_START:
       return {
         ...state,
@@ -53,10 +45,13 @@ export const userReducer = (state = initialState, action) => {
     case GET_USERS_START:
       return state;
     case GET_USERS_SUCCESS:
+      const userProfile = action.payload
+        .filter(user => user.username === state.username)
+        .pop();
       return {
         ...state,
         users: action.payload,
-        isAUser: action.payload.user_type
+        userProfile: userProfile
       };
     case GET_USERS_ERROR:
       return {
@@ -70,12 +65,14 @@ export const userReducer = (state = initialState, action) => {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
-      console.log(action.payload);
       return {
         ...state,
         token: action.payload.token,
-        loginMessage: action.payload.loginMessage,
-        loggedIn: true
+        loginMessage: action.payload.message,
+        loggedIn: true,
+        username: action.payload.username,
+        userType: action.payload.user_type,
+        loggingInUser: false
       };
     case LOGIN_ERROR:
       localStorage.clear();

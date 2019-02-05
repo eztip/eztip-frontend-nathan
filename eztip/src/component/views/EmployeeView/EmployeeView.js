@@ -6,12 +6,16 @@ const EmployeeView = props => {
   return (
     <div>
       <h1>Employee</h1>
-      <Employee employee={props.employee} />
+      <Employee employee={props.userProfile} />
     </div>
   );
 };
 
+const mapStateToProps = state => ({
+  userProfile: state.userReducer.userProfile
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   {}
 )(EmployeeView);
