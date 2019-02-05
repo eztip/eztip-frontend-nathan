@@ -2,18 +2,19 @@ import {
   LOGIN,
   UPDATE_LOGIN_FORM,
   CLEAR_LOGIN_FORM,
-  GET_PROFILE_START,
-  GET_PROFILE_SUCCESS,
-  GET_PROFILE_ERROR
+  GET_USER_START,
+  GET_USER_SUCCESS,
+  GET_USER_ERROR
 } from "../types";
 
 const initialState = {
-  loggedIn: true,
+  loggedIn: false,
+  isAUser: true,
   loginUsername: "",
   loginPassword: "",
+  employee: {},
   loadingEmployee: false,
-  employeeLoaded: false,
-  employee: {}
+  employeeLoaded: false
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -34,19 +35,20 @@ export const userReducer = (state = initialState, action) => {
         loginUsername: "",
         loginPassword: ""
       };
-    case GET_PROFILE_START:
+    case GET_USER_START:
       return {
         ...state,
         loadingEmployee: true
       };
-    case GET_PROFILE_SUCCESS:
+    case GET_USER_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         loadingEmployee: false,
         employeeLoaded: true,
-        employee: action.payload
+        employees: action.payload
       };
-    case GET_PROFILE_ERROR:
+    case GET_USER_ERROR:
       return {
         ...state,
         loadingEmployee: false

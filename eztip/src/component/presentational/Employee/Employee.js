@@ -1,7 +1,6 @@
 import React from "react";
 
 const Employee = props => {
-  console.log(props);
   return (
     <div className="profile__container">
       <img src={props.employee.profile_photo} alt="Profile avatar" />

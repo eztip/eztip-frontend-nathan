@@ -2,11 +2,11 @@
 export const LOGIN = "LOGIN";
 export const UPDATE_LOGIN_FORM = "UPDATE_LOGIN_FORM";
 export const CLEAR_LOGIN_FORM = "CLEAR_LOGIN_FORM";
-export const GET_PROFILE_START = "GET_PROFILE_START";
-export const GET_PROFILE_SUCCESS = "GET_PROFILE_SUCCESS";
-export const GET_PROFILE_ERROR = "GET_PROFILE_ERROR";
-export const GET_PROFILES_START = "GET_PROFILES_START";
-export const GET_PROFILES_SUCCESS = "GET_PROFILES_SUCCESS";
-export const GET_PROFILES_ERROR = "GET_PROFILES_ERROR";
+export const GET_USER_START = "GET_USER_START";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_ERROR = "GET_USER_ERROR";
+export const GET_USERS_START = "GET_USERS_START";
+export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
+export const GET_USERS_ERROR = "GET_USERS_ERROR";
 
 // ===========================================================

@@ -3,15 +3,17 @@ import { Route } from "react-router-dom";
 import { EmployeeView } from "../EmployeeView";
 import { GuestView } from "../GuestView";
 import { connect } from "react-redux";
-import { getUserByID } from "../../../store/actions/index";
+import { getUserByID, getUsers } from "../../../store/actions/index";
 
 class HomeView extends Component {
-  getEmployee = id => {
-    this.props.getUserByID(id);
-  };
-
   componentDidMount() {
-    this.getEmployee(2);
+    this.props.getUsers();
+    // this.getEmployee(2);
+    //
+    // this.props.isAUser
+    //   ? this.props.history.push(`/employee/`)
+    //   : this.props.history.push("/guest");
+    // console.log("Employee", this.props.employee);
   }
 
   render() {
@@ -19,7 +21,7 @@ class HomeView extends Component {
       <div className="home__container">
         <Route
           exact
-          path="/"
+          path="/employee/:id"
           render={props => (
             <EmployeeView {...props} employee={this.props.employee} />
           )}
@@ -31,11 +33,14 @@ class HomeView extends Component {
 }
 
 const mapStateToProps = state => ({
-  employee: state.userReducer.employee
+  employee: state.userReducer.employee,
+  isAUser: state.userReducer.isAUser,
+  id: state.userReducer.employee.id
 });
 
 const mapActionsToProps = {
-  getUserByID
+  getUserByID,
+  getUsers
 };
 
 export default connect(

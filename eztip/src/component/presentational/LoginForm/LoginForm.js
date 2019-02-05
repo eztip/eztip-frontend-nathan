@@ -18,6 +18,7 @@ const LoginForm = props => {
   const submitForm = e => {
     e.preventDefault();
     props.loginSite();
+    props.history.push("/");
   };
   return (
     <form className="login__form" onSubmit={submitForm}>

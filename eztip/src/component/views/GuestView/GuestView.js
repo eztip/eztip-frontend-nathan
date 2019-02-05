@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 const GuestView = props => {
   return (
@@ -9,6 +9,6 @@ const GuestView = props => {
   );
 };
 
-GuestView.propTypes = {};
+// GuestView.propTypes = {};
 
 export default GuestView;
