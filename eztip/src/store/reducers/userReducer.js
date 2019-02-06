@@ -145,7 +145,7 @@ export const userReducer = (state = initialState, action) => {
         error: null
       };
     case NEW_USER_SUCCESS:
-      console.log(action.payload);
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         creatingUser: false,
@@ -159,12 +159,25 @@ export const userReducer = (state = initialState, action) => {
         creatingUser: false,
         error: action.payload
       };
+    case CREATE_PROFILE_START:
+      return {
+        ...state,
+        creatingProfile: true,
+        error: null
+      };
+    case CREATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        profileCreated: true,
+        creatingProfile: false
+      };
+    case CREATE_PROFILE_ERROR:
+      return {
+        ...state,
+        creatingProfile: false,
+        error: action.payload
+      };
     default:
       return state;
   }
 };
-
-// creatingUser: false,
-//   userCreated: false,
-//   creatingProfile: false,
-//   profileCreated: false

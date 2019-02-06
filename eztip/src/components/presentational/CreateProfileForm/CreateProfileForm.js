@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { updateUser, updateProfilePhoto } from "../../../store/actions";
+import { createNewProfile, updateProfilePhoto } from "../../../store/actions";
 
 class ProfileForm extends Component {
   state = {
@@ -11,18 +11,21 @@ class ProfileForm extends Component {
       occupation: "",
       profile_photo: "",
       tagline: "",
-      working_since: ""
+      working_since: "",
+      username: null,
+      id: null
     },
-    id: null,
-    username: null,
     selectedFile: null
   };
 
   componentDidMount() {
     this.setState({
       ...this.state,
-      id: this.props.newAccountID,
-      username: this.props.newAccountUsername
+      userProfile: {
+        ...this.state.userProfile,
+        id: this.props.newAccountID,
+        username: this.props.newAccountUsername
+      }
     });
   }
 
@@ -47,12 +50,14 @@ class ProfileForm extends Component {
     });
   };
 
-  updateProfile = e => {
+  createNewProfile = e => {
     e.preventDefault();
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
-    this.props.updateProfilePhoto(this.state.userProfile.id, fd);
-    this.props.updateUser(this.state.userProfile);
+    if (this.state.selectedFile) {
+      this.props.updateProfilePhoto(this.state.userProfile.id, fd);
+    }
+    this.props.createNewProfile(this.state.userProfile);
     this.props.history.push("/");
   };
 
@@ -60,7 +65,7 @@ class ProfileForm extends Component {
     return (
       <form
         className="profile__form"
-        onSubmit={this.updateProfile}
+        onSubmit={this.createNewProfile}
         method={"Post"}
         encType="multipart/form-data"
       >
@@ -110,7 +115,6 @@ class ProfileForm extends Component {
           onChange={this.handleChange}
         />
         <input
-          required
           autoComplete="off"
           type="file"
           name="profile_photo"
@@ -132,7 +136,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  updateUser,
+  createNewProfile,
   updateProfilePhoto
 };
 

@@ -55,13 +55,11 @@ export const getUsers = () => dispatch => {
 
 export const updateUser = user => dispatch => {
   dispatch({ type: UPDATE_USER_START });
-  console.log(user.id);
   const token = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: token } };
   axios
     .put(`https://eztip.herokuapp.com/workers/${user.id}`, user, reqOptions)
     .then(res => {
-      console.log("Update user", res.data);
       dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -105,14 +103,12 @@ export const logoutSite = () => {
 };
 
 export const payTip = tipObject => dispatch => {
-  console.log("Action", tipObject);
   dispatch({ type: PAY_TIP_START });
   const token = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: token } };
   axios
     .post("https://eztip.herokuapp.com/tips", tipObject, reqOptions)
     .then(res => {
-      console.log(res);
       dispatch({ type: PAY_TIP_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -132,8 +128,10 @@ export const registerUser = info => dispatch => {
 
 export const createNewProfile = info => dispatch => {
   dispatch({ type: CREATE_PROFILE_START });
+  const token = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: token } };
   axios
-    .post("https://eztip.herokuapp.com/workers", info)
+    .post("https://eztip.herokuapp.com/workers", info, reqOptions)
     .then(res => {
       dispatch({ type: CREATE_PROFILE_SUCCESS, payload: res.data });
     })

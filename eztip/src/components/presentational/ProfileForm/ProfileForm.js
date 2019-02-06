@@ -126,7 +126,7 @@ class ProfileForm extends Component {
 }
 
 ProfileForm.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
