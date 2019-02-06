@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const LoginFormContainer = styled.div`
   border: 1px solid #b5b5b5;
-  margin: 20vh auto 0;
+  margin: 15vh auto 0;
   padding: 35px 0;
   max-width: 500px;
   width: 100%;
@@ -37,7 +37,7 @@ const LoginFormContainer = styled.div`
       justify-content: space-between;
 
       button {
-        margin: 10px 0;
+        margin: 10px 0 0;
         width: 47%;
       }
     }

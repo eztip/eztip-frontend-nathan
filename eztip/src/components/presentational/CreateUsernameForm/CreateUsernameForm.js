@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const CreateUsernameContainer = styled.div`
   border: 1px solid #b5b5b5;
-  margin: 20vh auto 0;
+  margin: 15vh auto 0;
   padding: 35px 0;
   max-width: 500px;
   width: 100%;
@@ -67,8 +67,8 @@ class CreateUsernameForm extends Component {
   render() {
     return (
       <CreateUsernameContainer>
+        <h1>Sign Up</h1>
         <form className="login__form" onSubmit={this.createUser}>
-          <h1>Sign Up</h1>
           <input
             required
             autoComplete="off"
