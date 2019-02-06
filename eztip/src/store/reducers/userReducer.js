@@ -14,7 +14,13 @@ import {
   UPDATE_USER_ERROR,
   UPDATE_PHOTO_START,
   UPDATE_PHOTO_SUCCESS,
-  UPDATE_PHOTO_ERROR
+  UPDATE_PHOTO_ERROR,
+  NEW_USER_START,
+  NEW_USER_SUCCESS,
+  NEW_USER_ERROR,
+  CREATE_PROFILE_START,
+  CREATE_PROFILE_SUCCESS,
+  CREATE_PROFILE_ERROR
 } from "../types";
 
 const initialState = {
@@ -26,7 +32,13 @@ const initialState = {
   loginMessage: null,
   loggingInUser: false,
   loggedIn: false,
-  error: null
+  error: null,
+  creatingUser: false,
+  userCreated: false,
+  creatingProfile: false,
+  profileCreated: false,
+  newAccountUsername: null,
+  newAccountID: null
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -71,7 +83,9 @@ export const userReducer = (state = initialState, action) => {
         loggingInUser: true
       };
     case LOGIN_SUCCESS:
+      console.log("Login", action.payload.user_type);
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("userType", action.payload.user_type);
       return {
         ...state,
         token: action.payload.token,
@@ -106,6 +120,11 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         userProfile: action.payload
       };
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
     case UPDATE_PHOTO_START:
       return state;
     case UPDATE_PHOTO_SUCCESS:
@@ -119,6 +138,46 @@ export const userReducer = (state = initialState, action) => {
     case UPDATE_PHOTO_ERROR:
       return {
         ...state,
+        error: action.payload
+      };
+    case NEW_USER_START:
+      return {
+        ...state,
+        creatingUser: true,
+        error: null
+      };
+    case NEW_USER_SUCCESS:
+      localStorage.setItem("token", action.payload.token);
+      return {
+        ...state,
+        creatingUser: false,
+        userCreated: true,
+        newAccountUsername: action.payload.username,
+        newAccountID: action.payload.userId,
+        loggedIn: false
+      };
+    case NEW_USER_ERROR:
+      return {
+        ...state,
+        creatingUser: false,
+        error: action.payload
+      };
+    case CREATE_PROFILE_START:
+      return {
+        ...state,
+        creatingProfile: true,
+        error: null
+      };
+    case CREATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        profileCreated: true,
+        creatingProfile: false
+      };
+    case CREATE_PROFILE_ERROR:
+      return {
+        ...state,
+        creatingProfile: false,
         error: action.payload
       };
     default:

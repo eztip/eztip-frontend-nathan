@@ -50,8 +50,9 @@ class ProfileForm extends Component {
     e.preventDefault();
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
-    if (this.state.selectedFile)
+    if (this.state.selectedFile) {
       this.props.updateProfilePhoto(this.state.userProfile.id, fd);
+    }
     this.props.updateUser(this.state.userProfile);
     this.props.history.push("/");
   };
@@ -61,7 +62,7 @@ class ProfileForm extends Component {
       <form
         className="profile__form"
         onSubmit={this.updateProfile}
-        method={this.props.loggedIn ? "Put" : "Post"}
+        method={"Put"}
         encType="multipart/form-data"
       >
         <input
@@ -94,7 +95,7 @@ class ProfileForm extends Component {
         <input
           required
           autoComplete="off"
-          type="number"
+          type="text"
           name="working_since"
           placeholder="Starting date of work"
           value={this.state.userProfile.working_since}
@@ -113,12 +114,9 @@ class ProfileForm extends Component {
           autoComplete="off"
           type="file"
           name="profile_photo"
-          placeholder="Profile photo URL"
           onChange={this.handleFile}
         />
-        <button type="submit">
-          {this.props.loggedIn ? "Update" : "Signup"}
-        </button>
+        <button type="submit">Update</button>
         <button type="button" onClick={this.goBack}>
           Back
         </button>
@@ -128,7 +126,18 @@ class ProfileForm extends Component {
 }
 
 ProfileForm.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool,
+  upserProfile: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    last_name: PropTypes.string.isRequired,
+    profile_photo: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    type_id: PropTypes.number,
+    user_type: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    working_since: PropTypes.string.isRequired
+  })
 };
 
 const mapStateToProps = state => ({

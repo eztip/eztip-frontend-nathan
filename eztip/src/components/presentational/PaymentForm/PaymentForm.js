@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { payTip } from "../../../store/actions";
+import { connect } from "react-redux";
 
 class PaymentForm extends Component {
   state = {
@@ -27,9 +29,17 @@ class PaymentForm extends Component {
     e.preventDefault();
     this.state.history.push(`/employee/${this.state.id}`);
   };
+  submitTip = e => {
+    e.preventDefault();
+    this.props.payTip({
+      worker_id: this.state.id,
+      tip_amount: this.state.payment
+    });
+    this.state.history.push(`/employee/${this.state.id}`);
+  };
   render() {
     return (
-      <form onSubmit={e => this.submitPayment(e)} className="payment-form">
+      <form onSubmit={this.submitTip} className="payment-form">
         <input
           required
           autoComplete="off"
@@ -51,8 +61,8 @@ class PaymentForm extends Component {
         <input
           required
           autoComplete="off"
-          type="text"
-          name="number"
+          type="number"
+          name="expiration"
           placeholder="Expiration date"
           value={this.state.expiration}
           onChange={this.handleChange}
@@ -80,4 +90,11 @@ PaymentForm.propTypes = {
   match: PropTypes.object.isRequired
 };
 
-export default PaymentForm;
+const mapActionsToProps = {
+  payTip
+};
+
+export default connect(
+  null,
+  mapActionsToProps
+)(PaymentForm);

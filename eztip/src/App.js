@@ -1,23 +1,21 @@
 import React, { Component } from "react";
-import "./App.css";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { authenticate } from "./components/container/authenticate";
-import { NavigationContainer } from "./components/container/NavigationContainer";
+import { GlobalStyle } from "./styles";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavigationContainer
-          match={this.props.match}
-          history={this.props.history}
-        />
-        <DisplayedComponent
-          match={this.props.match}
-          history={this.props.history}
-        />
-      </div>
+      <>
+        <GlobalStyle />
+        <div className="App">
+          <DisplayedComponent
+            match={this.props.match}
+            history={this.props.history}
+          />
+        </div>
+      </>
     );
   }
 }
