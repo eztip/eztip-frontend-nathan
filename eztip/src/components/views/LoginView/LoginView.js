@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import { LoginForm } from "../../presentational/LoginForm";
 
@@ -11,5 +12,10 @@ class LoginView extends Component {
     );
   }
 }
+
+LoginView.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 export default LoginView;

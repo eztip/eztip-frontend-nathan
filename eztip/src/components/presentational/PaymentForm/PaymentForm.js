@@ -28,7 +28,6 @@ class PaymentForm extends Component {
     this.state.history.push(`/welcome/guest/${this.state.id}`);
   };
   render() {
-    console.log(this.props);
     return (
       <form onSubmit={e => this.submitPayment(e)} className="payment-form">
         <input
@@ -76,6 +75,10 @@ class PaymentForm extends Component {
   }
 }
 
-PaymentForm.propTypes = {};
+PaymentForm.propTypes = {
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 export default PaymentForm;

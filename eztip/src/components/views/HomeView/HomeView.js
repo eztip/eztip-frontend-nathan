@@ -4,6 +4,7 @@ import { EmployeeView } from "../EmployeeView";
 import { GuestView } from "../GuestView";
 import { connect } from "react-redux";
 import { getUsers } from "../../../store/actions/index";
+import PropTypes from "prop-types";
 
 class HomeView extends Component {
   componentDidMount() {
@@ -28,6 +29,11 @@ class HomeView extends Component {
     );
   }
 }
+
+HomeView.propTypes = {
+  history: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   userType: state.userReducer.userType

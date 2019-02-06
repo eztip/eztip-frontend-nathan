@@ -12,6 +12,10 @@ const PaymentFormContainer = props => {
   );
 };
 
-PaymentFormContainer.propTypes = {};
+PaymentFormContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired
+};
 
 export default PaymentFormContainer;
