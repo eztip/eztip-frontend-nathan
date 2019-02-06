@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { loginSite } from "../../../store/actions";
 
 class LoginForm extends Component {
@@ -32,31 +33,36 @@ class LoginForm extends Component {
   };
   render() {
     return (
-      <form className="login__form" onSubmit={this.submitForm}>
-        <h1>Please Login</h1>
-        <input
-          required
-          autoComplete="off"
-          type="text"
-          name="loginUsername"
-          value={this.state.loginUsername}
-          placeholder="Username"
-          onChange={this.handleChange}
-        />
-        <input
-          required
-          autoComplete="off"
-          type="password"
-          name="loginPassword"
-          value={this.state.loginPassword}
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <button stype="submit">Login</button>
-        <button type="button" onClick={this.clearForm}>
-          Clear
-        </button>
-      </form>
+      <div className="login__form__container">
+        <form className="login__form" onSubmit={this.submitForm}>
+          <h1>Please Login</h1>
+          <input
+            required
+            autoComplete="off"
+            type="text"
+            name="loginUsername"
+            value={this.state.loginUsername}
+            placeholder="Username"
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            autoComplete="off"
+            type="password"
+            name="loginPassword"
+            value={this.state.loginPassword}
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <button stype="submit">Login</button>
+          <button type="button" onClick={this.clearForm}>
+            Clear
+          </button>
+        </form>
+        <p>
+          Need an account? <Link to="/signup">Signup</Link>
+        </p>
+      </div>
     );
   }
 }

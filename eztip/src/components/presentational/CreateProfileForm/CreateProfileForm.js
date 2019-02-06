@@ -13,8 +13,18 @@ class ProfileForm extends Component {
       tagline: "",
       working_since: ""
     },
+    id: null,
+    username: null,
     selectedFile: null
   };
+
+  componentDidMount() {
+    this.setState({
+      ...this.state,
+      id: this.props.newAccountID,
+      username: this.props.newAccountUsername
+    });
+  }
 
   handleChange = e => {
     this.setState({
@@ -25,15 +35,6 @@ class ProfileForm extends Component {
       }
     });
   };
-
-  componentDidMount() {
-    return this.props.loggedIn
-      ? this.setState({
-          ...this.state,
-          userProfile: this.props.userProfile
-        })
-      : null;
-  }
 
   goBack = e => {
     e.preventDefault();
@@ -50,9 +51,7 @@ class ProfileForm extends Component {
     e.preventDefault();
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
-    if (this.state.selectedFile) {
-      this.props.updateProfilePhoto(this.state.userProfile.id, fd);
-    }
+    this.props.updateProfilePhoto(this.state.userProfile.id, fd);
     this.props.updateUser(this.state.userProfile);
     this.props.history.push("/");
   };
@@ -62,7 +61,7 @@ class ProfileForm extends Component {
       <form
         className="profile__form"
         onSubmit={this.updateProfile}
-        method={"Put"}
+        method={"Post"}
         encType="multipart/form-data"
       >
         <input
@@ -111,15 +110,13 @@ class ProfileForm extends Component {
           onChange={this.handleChange}
         />
         <input
+          required
           autoComplete="off"
           type="file"
           name="profile_photo"
           onChange={this.handleFile}
         />
-        <button type="submit">Update</button>
-        <button type="button" onClick={this.goBack}>
-          Back
-        </button>
+        <button type="submit">Signup</button>
       </form>
     );
   }
@@ -130,8 +127,8 @@ ProfileForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userProfile: state.userReducer.userProfile,
-  loggedIn: state.userReducer.loggedIn
+  newAccountID: state.userReducer.newAccountID,
+  newAccountUsername: state.userReducer.newAccountUsername
 });
 
 const mapActionsToProps = {

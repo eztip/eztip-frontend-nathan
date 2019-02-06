@@ -14,7 +14,13 @@ import {
   UPDATE_USER_ERROR,
   UPDATE_PHOTO_START,
   UPDATE_PHOTO_SUCCESS,
-  UPDATE_PHOTO_ERROR
+  UPDATE_PHOTO_ERROR,
+  NEW_USER_START,
+  NEW_USER_SUCCESS,
+  NEW_USER_ERROR,
+  CREATE_PROFILE_START,
+  CREATE_PROFILE_SUCCESS,
+  CREATE_PROFILE_ERROR
 } from "../types";
 
 const initialState = {
@@ -26,7 +32,13 @@ const initialState = {
   loginMessage: null,
   loggingInUser: false,
   loggedIn: false,
-  error: null
+  error: null,
+  creatingUser: false,
+  userCreated: false,
+  creatingProfile: false,
+  profileCreated: false,
+  newAccountUsername: null,
+  newAccountID: null
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -126,7 +138,33 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
+    case NEW_USER_START:
+      return {
+        ...state,
+        creatingUser: true,
+        error: null
+      };
+    case NEW_USER_SUCCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        creatingUser: false,
+        userCreated: true,
+        newAccountUsername: action.payload.username,
+        newAccountID: action.payload.userId
+      };
+    case NEW_USER_ERROR:
+      return {
+        ...state,
+        creatingUser: false,
+        error: action.payload
+      };
     default:
       return state;
   }
 };
+
+// creatingUser: false,
+//   userCreated: false,
+//   creatingProfile: false,
+//   profileCreated: false

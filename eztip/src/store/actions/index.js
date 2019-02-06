@@ -21,7 +21,10 @@ import {
   UPDATE_PHOTO_ERROR,
   PAY_TIP_START,
   PAY_TIP_SUCCESS,
-  PAY_TIP_ERROR
+  PAY_TIP_ERROR,
+  CREATE_PROFILE_START,
+  CREATE_PROFILE_SUCCESS,
+  CREATE_PROFILE_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -53,8 +56,10 @@ export const getUsers = () => dispatch => {
 export const updateUser = user => dispatch => {
   dispatch({ type: UPDATE_USER_START });
   console.log(user.id);
+  const token = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: token } };
   axios
-    .put(`https://eztip.herokuapp.com/workers/${user.id}`, user)
+    .put(`https://eztip.herokuapp.com/workers/${user.id}`, user, reqOptions)
     .then(res => {
       console.log("Update user", res.data);
       dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
@@ -64,22 +69,12 @@ export const updateUser = user => dispatch => {
     });
 };
 
-export const newUser = user => dispatch => {
-  dispatch({ type: NEW_USER_START });
-  axios
-    .post("https://eztip.herokuapp.com/register", user)
-    .then(res => {
-      dispatch({ type: NEW_USER_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      dispatch({ type: NEW_USER_ERROR, payload: err.data });
-    });
-};
-
 export const updateProfilePhoto = (id, fd) => dispatch => {
   dispatch({ type: UPDATE_PHOTO_START });
+  const token = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: token } };
   axios
-    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd)
+    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd, reqOptions)
     .then(res => {
       dispatch({ type: UPDATE_PHOTO_SUCCESS, payload: res.data.data.imgUrl });
     })
@@ -112,16 +107,37 @@ export const logoutSite = () => {
 export const payTip = tipObject => dispatch => {
   console.log("Action", tipObject);
   dispatch({ type: PAY_TIP_START });
-
   const token = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: token } };
   axios
-    .post("https://eztip.herokuapp.com/tips", tipObject)
+    .post("https://eztip.herokuapp.com/tips", tipObject, reqOptions)
     .then(res => {
       console.log(res);
       dispatch({ type: PAY_TIP_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: PAY_TIP_ERROR, payload: err.data });
+    });
+};
+
+export const registerUser = info => dispatch => {
+  dispatch({ type: NEW_USER_START });
+  axios
+    .post("https://eztip.herokuapp.com/register", info)
+    .then(res => {
+      dispatch({ type: NEW_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: NEW_USER_ERROR, payload: err.data }));
+};
+
+export const createNewProfile = info => dispatch => {
+  dispatch({ type: CREATE_PROFILE_START });
+  axios
+    .post("https://eztip.herokuapp.com/workers", info)
+    .then(res => {
+      dispatch({ type: CREATE_PROFILE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: CREATE_PROFILE_ERROR, payload: err.payload });
     });
 };

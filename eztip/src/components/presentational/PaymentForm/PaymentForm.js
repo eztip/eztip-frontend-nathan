@@ -34,10 +34,8 @@ class PaymentForm extends Component {
     this.props.payTip({
       worker_id: this.state.id,
       tip_amount: this.state.payment
-      // ccNumber: this.state.ccNumber,
-      // expiration: this.state.expiration,
-      // verification: this.state.verification
     });
+    this.state.history.push(`/employee/${this.state.id}`);
   };
   render() {
     return (
