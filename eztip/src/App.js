@@ -1,18 +1,32 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { authenticate } from "./component/container/authenticate";
+import { authenticate } from "./components/container/authenticate";
+import { NavigationContainer } from "./components/presentational/Navigation";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/" render={props => <DisplayedComponent {...props} />} />
+        <NavigationContainer
+          match={this.props.match}
+          history={this.props.history}
+        />
+        <DisplayedComponent
+          match={this.props.match}
+          history={this.props.history}
+        />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 const DisplayedComponent = authenticate;
 

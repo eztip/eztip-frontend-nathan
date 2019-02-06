@@ -1,14 +1,14 @@
 import axios from "axios";
 import {
-  LOGIN,
-  UPDATE_LOGIN_FORM,
-  CLEAR_LOGIN_FORM,
   GET_USER_START,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
   GET_USERS_START,
   GET_USERS_SUCCESS,
-  GET_USERS_ERROR
+  GET_USERS_ERROR,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -25,8 +25,10 @@ export const getUserByID = id => dispatch => {
 
 export const getUsers = () => dispatch => {
   dispatch({ type: GET_USERS_START });
+  const token = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: token } };
   axios
-    .get("https://eztip.herokuapp.com/workers")
+    .get("https://eztip.herokuapp.com/workers", reqOptions)
     .then(res => {
       dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
     })
@@ -35,21 +37,17 @@ export const getUsers = () => dispatch => {
     });
 };
 
-export const loginSite = () => {
-  return {
-    type: LOGIN
-  };
-};
-
-export const updateLoginForm = e => {
-  return {
-    type: UPDATE_LOGIN_FORM,
-    payload: e
-  };
-};
-
-export const clearLoginForm = () => {
-  return {
-    type: CLEAR_LOGIN_FORM
-  };
+export const loginSite = credentials => dispatch => {
+  dispatch({ type: LOGIN_START });
+  axios
+    .post("https://eztip.herokuapp.com/login", credentials)
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({ type: LOGIN_ERROR, payload: err.data });
+    });
 };
