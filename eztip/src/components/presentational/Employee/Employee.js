@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Employee = props => {
   return (
@@ -12,7 +13,9 @@ const Employee = props => {
       <p>ID: {props.employee.id}</p>
       <p>Employed Since: {props.employee.working_since}</p>
       <div className="employee-profile__buttons">
-        <button type="button">Update</button>
+        <Link to="/employee/update">
+          <button type="button">Update</button>
+        </Link>
         <button type="button">Tips Received</button>
       </div>
     </div>

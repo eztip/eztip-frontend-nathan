@@ -8,6 +8,9 @@ class LoginForm extends Component {
     loginUsername: "",
     loginPassword: ""
   };
+  componentDidMount() {
+    this.props.history.push("/");
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -26,11 +29,7 @@ class LoginForm extends Component {
       username: this.state.loginUsername,
       password: this.state.loginPassword
     });
-    this.props.history.push("/welcome");
   };
-  componentDidMount() {
-    this.props.history.push("/login");
-  }
   render() {
     return (
       <form className="login__form" onSubmit={this.submitForm}>

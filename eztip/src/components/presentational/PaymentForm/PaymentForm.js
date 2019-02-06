@@ -25,7 +25,7 @@ class PaymentForm extends Component {
   };
   cancel = e => {
     e.preventDefault();
-    this.state.history.push(`/welcome/guest/${this.state.id}`);
+    this.state.history.push(`/guest/${this.state.id}`);
   };
   render() {
     return (

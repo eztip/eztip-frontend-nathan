@@ -12,14 +12,14 @@ const EmployeeCard = props => {
         .pop();
   const giveTip = e => {
     e.preventDefault();
-    props.history.push(`/welcome/guest/${employee.id}/tip`);
+    props.history.push(`/guest/${employee.id}/tip`);
   };
   const goBack = e => {
     e.preventDefault();
-    props.history.push("/welcome/guest");
+    props.history.push("/guest");
   };
   return (
-    <Link to={`/welcome/guest/${employee.id}`}>
+    <Link to={`/guest/${employee.id}`}>
       <div className="employee__card">
         <h2 className="employee__name">
           {employee.first_name} {employee.last_name}
