@@ -86,6 +86,7 @@ export const loginSite = credentials => dispatch => {
   axios
     .post("https://eztip.herokuapp.com/login", credentials)
     .then(res => {
+      console.log(res.data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data

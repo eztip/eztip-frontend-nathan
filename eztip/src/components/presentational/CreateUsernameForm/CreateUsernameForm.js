@@ -2,6 +2,46 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { registerUser } from "../../../store/actions";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const CreateUsernameContainer = styled.div`
+  border: 1px solid #b5b5b5;
+  margin: 20vh auto 0;
+  padding: 35px 0;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0 0 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    input {
+      margin: 15px;
+      width: 70%;
+    }
+
+    div {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        margin: 10px 0;
+        width: 47%;
+      }
+    }
+  }
+`;
 
 class CreateUsernameForm extends Component {
   state = {
@@ -26,9 +66,9 @@ class CreateUsernameForm extends Component {
   };
   render() {
     return (
-      <div>
+      <CreateUsernameContainer>
         <form className="login__form" onSubmit={this.createUser}>
-          <h1>Signup</h1>
+          <h1>Sign Up</h1>
           <input
             required
             autoComplete="off"
@@ -47,12 +87,14 @@ class CreateUsernameForm extends Component {
             placeholder="New password"
             onChange={this.handleChange}
           />
-          <button stype="submit">Signup</button>
-          <button type="button" onClick={this.cancel}>
-            Cancel
-          </button>
+          <div>
+            <button stype="submit">Sign Up</button>
+            <button type="button" onClick={this.cancel}>
+              Cancel
+            </button>
+          </div>
         </form>
-      </div>
+      </CreateUsernameContainer>
     );
   }
 }

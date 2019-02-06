@@ -10,7 +10,6 @@ const EmployeeCard = props => {
     : props.users
         .filter(user => props.match.params.id === user.id.toString())
         .pop();
-  console.log(employee.id);
   const giveTip = e => {
     e.preventDefault();
     props.history.push(`/employee/${employee.id}/tip`);

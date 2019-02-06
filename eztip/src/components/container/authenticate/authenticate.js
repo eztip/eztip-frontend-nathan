@@ -8,7 +8,7 @@ import { HomeView } from "../../views/HomeView";
 const authenticate = HomeView => LoginView => {
   return class extends Component {
     render() {
-      return this.props.loggedIn ? (
+      return this.props.loggedIn || localStorage.getItem("userType") ? (
         <HomeView match={this.props.match} history={this.props.history} />
       ) : (
         <LoginView match={this.props.match} history={this.props.history} />

@@ -3,6 +3,50 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginSite } from "../../../store/actions";
+import styled from "styled-components";
+
+const LoginFormContainer = styled.div`
+  border: 1px solid #b5b5b5;
+  margin: 20vh auto 0;
+  padding: 35px 0;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0 0 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    input {
+      margin: 15px;
+      width: 70%;
+    }
+
+    div {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        margin: 10px 0;
+        width: 47%;
+      }
+    }
+  }
+`;
+
+const SignUpFormContainer = styled(LoginFormContainer)`
+  margin: 35px auto 0;
+`;
 
 class LoginForm extends Component {
   state = {
@@ -33,36 +77,42 @@ class LoginForm extends Component {
   };
   render() {
     return (
-      <div className="login__form__container">
-        <form className="login__form" onSubmit={this.submitForm}>
-          <h1>Please Login</h1>
-          <input
-            required
-            autoComplete="off"
-            type="text"
-            name="loginUsername"
-            value={this.state.loginUsername}
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
-          <input
-            required
-            autoComplete="off"
-            type="password"
-            name="loginPassword"
-            value={this.state.loginPassword}
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-          <button stype="submit">Login</button>
-          <button type="button" onClick={this.clearForm}>
-            Clear
-          </button>
-        </form>
-        <p>
-          Need an account? <Link to="/signup">Signup</Link>
-        </p>
-      </div>
+      <>
+        <LoginFormContainer>
+          <h1>Sign In</h1>
+          <form onSubmit={this.submitForm}>
+            <input
+              required
+              autoComplete="off"
+              type="text"
+              name="loginUsername"
+              value={this.state.loginUsername}
+              placeholder="Username"
+              onChange={this.handleChange}
+            />
+            <input
+              required
+              autoComplete="off"
+              type="password"
+              name="loginPassword"
+              value={this.state.loginPassword}
+              placeholder="Password"
+              onChange={this.handleChange}
+            />
+            <div>
+              <button type="submit">Sign In</button>
+              <button type="button" onClick={this.clearForm}>
+                Clear
+              </button>
+            </div>
+          </form>
+        </LoginFormContainer>
+        <SignUpFormContainer>
+          <p>
+            Need an account? <Link to="/signup">Signup</Link>
+          </p>
+        </SignUpFormContainer>
+      </>
     );
   }
 }

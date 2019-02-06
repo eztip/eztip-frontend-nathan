@@ -83,7 +83,9 @@ export const userReducer = (state = initialState, action) => {
         loggingInUser: true
       };
     case LOGIN_SUCCESS:
+      console.log("Login", action.payload.user_type);
       localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("userType", action.payload.user_type);
       return {
         ...state,
         token: action.payload.token,
