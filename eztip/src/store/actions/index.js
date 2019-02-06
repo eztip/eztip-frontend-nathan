@@ -18,7 +18,10 @@ import {
   NEW_USER_ERROR,
   UPDATE_PHOTO_START,
   UPDATE_PHOTO_SUCCESS,
-  UPDATE_PHOTO_ERROR
+  UPDATE_PHOTO_ERROR,
+  PAY_TIP_START,
+  PAY_TIP_SUCCESS,
+  PAY_TIP_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -104,4 +107,21 @@ export const logoutSite = () => {
   return {
     type: LOGOUT_SITE
   };
+};
+
+export const payTip = tipObject => dispatch => {
+  console.log("Action", tipObject);
+  dispatch({ type: PAY_TIP_START });
+
+  const token = localStorage.getItem("token");
+  const reqOptions = { headers: { authorization: token } };
+  axios
+    .post("https://eztip.herokuapp.com/tips", tipObject)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: PAY_TIP_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: PAY_TIP_ERROR, payload: err.data });
+    });
 };

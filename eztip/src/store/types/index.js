@@ -20,3 +20,6 @@ export const UPDATE_PHOTO_SUCCESS = "UPDATE_PHOTO_SUCCESS";
 export const UPDATE_PHOTO_ERROR = "UPDATE_PHOTO_ERROR";
 
 // =========================================================== Payment Reducer Types
+export const PAY_TIP_START = "PAY_TIP_START";
+export const PAY_TIP_SUCCESS = "PAY_TIP_SUCCESS";
+export const PAY_TIP_ERROR = "PAY_TIP_ERROR";

@@ -106,6 +106,11 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         userProfile: action.payload
       };
+    case UPDATE_USER_ERROR:
+      return {
+        ...state,
+        error: action.payload
+      };
     case UPDATE_PHOTO_START:
       return state;
     case UPDATE_PHOTO_SUCCESS:
