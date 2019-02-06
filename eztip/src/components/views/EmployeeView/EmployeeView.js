@@ -11,11 +11,11 @@ const EmployeeView = props => {
       <h1>Employee</h1>
       <Route
         exact
-        path="/employee"
+        path="/"
         render={props => <Employee {...props} employee={userProfile} />}
       />
       <Route
-        path="/employee/update"
+        path="/update"
         render={props => (
           <ProfileForm {...props} employee={props.userProfile} />
         )}

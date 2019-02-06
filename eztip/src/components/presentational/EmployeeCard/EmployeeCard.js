@@ -10,16 +10,17 @@ const EmployeeCard = props => {
     : props.users
         .filter(user => props.match.params.id === user.id.toString())
         .pop();
+  console.log(employee.id);
   const giveTip = e => {
     e.preventDefault();
-    props.history.push(`/guest/${employee.id}/tip`);
+    props.history.push(`/employee/${employee.id}/tip`);
   };
   const goBack = e => {
     e.preventDefault();
-    props.history.push("/guest");
+    props.history.push("/");
   };
   return (
-    <Link to={`/guest/${employee.id}`}>
+    <Link to={`/employee/${employee.id}`}>
       <div className="employee__card">
         <h2 className="employee__name">
           {employee.first_name} {employee.last_name}

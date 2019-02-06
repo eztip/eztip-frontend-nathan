@@ -8,9 +8,6 @@ class LoginForm extends Component {
     loginUsername: "",
     loginPassword: ""
   };
-  componentDidMount() {
-    this.props.history.push("/");
-  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -46,7 +43,7 @@ class LoginForm extends Component {
         <input
           required
           autoComplete="off"
-          type="text"
+          type="password"
           name="loginPassword"
           value={this.state.loginPassword}
           placeholder="Password"

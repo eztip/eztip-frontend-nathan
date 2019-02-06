@@ -9,7 +9,10 @@ import {
   LOGIN_START,
   LOGIN_SUCCESS,
   LOGIN_ERROR,
-  LOGOUT_SITE
+  LOGOUT_SITE,
+  UPDATE_USER_START,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -35,6 +38,19 @@ export const getUsers = () => dispatch => {
     })
     .catch(err => {
       dispatch({ type: GET_USERS_ERROR, payload: err.data });
+    });
+};
+
+export const updateUser = user => dispatch => {
+  dispatch({ type: UPDATE_USER_START });
+  axios
+    .put(`https://eztip.herokuapp.com/workers/${user.id}`, user)
+    .then(res => {
+      console.log(res.data);
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_USER_ERROR, payload: err.data });
     });
 };
 
