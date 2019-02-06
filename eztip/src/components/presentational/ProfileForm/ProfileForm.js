@@ -126,7 +126,18 @@ class ProfileForm extends Component {
 }
 
 ProfileForm.propTypes = {
-  loggedIn: PropTypes.bool
+  loggedIn: PropTypes.bool,
+  upserProfile: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    last_name: PropTypes.string.isRequired,
+    profile_photo: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    type_id: PropTypes.number,
+    user_type: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    working_since: PropTypes.string.isRequired
+  })
 };
 
 const mapStateToProps = state => ({

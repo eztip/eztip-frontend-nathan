@@ -57,7 +57,9 @@ class CreateUsernameForm extends Component {
   }
 }
 
-CreateUsernameForm.propTypes = {};
+CreateUsernameForm.propTypes = {
+  registerUser: PropTypes.func
+};
 
 const mapActionsToProps = {
   registerUser

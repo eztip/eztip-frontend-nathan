@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createNewProfile, updateProfilePhoto } from "../../../store/actions";
 
-class ProfileForm extends Component {
+class CreateProfileForm extends Component {
   state = {
     userProfile: {
       first_name: "",
@@ -126,8 +126,11 @@ class ProfileForm extends Component {
   }
 }
 
-ProfileForm.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+CreateProfileForm.propTypes = {
+  newAccountID: PropTypes.number,
+  newAccountUsername: PropTypes.string,
+  createNewProfile: PropTypes.func,
+  updateProfilePhoto: PropTypes.func
 };
 
 const mapStateToProps = state => ({
@@ -143,4 +146,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(ProfileForm);
+)(CreateProfileForm);

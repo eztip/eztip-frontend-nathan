@@ -151,7 +151,8 @@ export const userReducer = (state = initialState, action) => {
         creatingUser: false,
         userCreated: true,
         newAccountUsername: action.payload.username,
-        newAccountID: action.payload.userId
+        newAccountID: action.payload.userId,
+        loggedIn: false
       };
     case NEW_USER_ERROR:
       return {
