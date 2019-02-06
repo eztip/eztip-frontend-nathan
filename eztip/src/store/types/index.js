@@ -12,5 +12,11 @@ export const LOGIN_ERROR = "LOGIN_ERROR";
 export const UPDATE_USER_START = "UPDATE_USER_START";
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const UPDATE_USER_ERROR = "UPDATE_USER_ERROR";
+export const NEW_USER_START = "NEW_USER_START";
+export const NEW_USER_SUCCESS = "NEW_USER_SUCCESS";
+export const NEW_USER_ERROR = "NEW_USER_ERROR";
+export const UPDATE_PHOTO_START = "UPDATE_PHOTO_START";
+export const UPDATE_PHOTO_SUCCESS = "UPDATE_PHOTO_SUCCESS";
+export const UPDATE_PHOTO_ERROR = "UPDATE_PHOTO_ERROR";
 
-// ===========================================================
+// =========================================================== Payment Reducer Types

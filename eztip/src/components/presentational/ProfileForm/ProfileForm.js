@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { updateUser } from "../../../store/actions";
+import { updateUser, updateProfilePhoto } from "../../../store/actions";
 
 class ProfileForm extends Component {
   state = {
@@ -12,7 +12,8 @@ class ProfileForm extends Component {
       profile_photo: "",
       tagline: "",
       working_since: ""
-    }
+    },
+    selectedFile: null
   };
 
   handleChange = e => {
@@ -27,13 +28,10 @@ class ProfileForm extends Component {
 
   componentDidMount() {
     return this.props.loggedIn
-      ? this.setState(
-          {
-            ...this.state,
-            userProfile: this.props.userProfile
-          },
-          () => console.log(this.state)
-        )
+      ? this.setState({
+          ...this.state,
+          userProfile: this.props.userProfile
+        })
       : null;
   }
 
@@ -42,15 +40,30 @@ class ProfileForm extends Component {
     this.props.history.push("/");
   };
 
+  handleFile = e => {
+    this.setState({
+      selectedFile: e.target.files[0]
+    });
+  };
+
   updateProfile = e => {
     e.preventDefault();
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile);
+    if (this.state.selectedFile)
+      this.props.updateProfilePhoto(this.state.userProfile.id, fd);
     this.props.updateUser(this.state.userProfile);
     this.props.history.push("/");
   };
 
   render() {
     return (
-      <form className="profile__form" onSubmit={this.updateProfile}>
+      <form
+        className="profile__form"
+        onSubmit={this.updateProfile}
+        method={this.props.loggedIn ? "Put" : "Post"}
+        encType="multipart/form-data"
+      >
         <input
           required
           autoComplete="off"
@@ -97,13 +110,11 @@ class ProfileForm extends Component {
           onChange={this.handleChange}
         />
         <input
-          required
           autoComplete="off"
           type="file"
           name="profile_photo"
           placeholder="Profile photo URL"
-          value={this.state.userProfile.profile_photo}
-          onChange={this.handleChange}
+          onChange={this.handleFile}
         />
         <button type="submit">
           {this.props.loggedIn ? "Update" : "Signup"}
@@ -126,7 +137,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  updateUser
+  updateUser,
+  updateProfilePhoto
 };
 
 export default connect(

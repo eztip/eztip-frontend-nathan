@@ -12,7 +12,13 @@ import {
   LOGOUT_SITE,
   UPDATE_USER_START,
   UPDATE_USER_SUCCESS,
-  UPDATE_USER_ERROR
+  UPDATE_USER_ERROR,
+  NEW_USER_START,
+  NEW_USER_SUCCESS,
+  NEW_USER_ERROR,
+  UPDATE_PHOTO_START,
+  UPDATE_PHOTO_SUCCESS,
+  UPDATE_PHOTO_ERROR
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -43,14 +49,39 @@ export const getUsers = () => dispatch => {
 
 export const updateUser = user => dispatch => {
   dispatch({ type: UPDATE_USER_START });
+  console.log(user.id);
   axios
     .put(`https://eztip.herokuapp.com/workers/${user.id}`, user)
     .then(res => {
-      console.log(res.data);
+      console.log("Update user", res.data);
       dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: UPDATE_USER_ERROR, payload: err.data });
+    });
+};
+
+export const newUser = user => dispatch => {
+  dispatch({ type: NEW_USER_START });
+  axios
+    .post("https://eztip.herokuapp.com/register", user)
+    .then(res => {
+      dispatch({ type: NEW_USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: NEW_USER_ERROR, payload: err.data });
+    });
+};
+
+export const updateProfilePhoto = (id, fd) => dispatch => {
+  dispatch({ type: UPDATE_PHOTO_START });
+  axios
+    .post(`https://eztip.herokuapp.com/workers/${id}/upload`, fd)
+    .then(res => {
+      dispatch({ type: UPDATE_PHOTO_SUCCESS, payload: res.data.data.imgUrl });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_PHOTO_ERROR, payload: err.data });
     });
 };
 
