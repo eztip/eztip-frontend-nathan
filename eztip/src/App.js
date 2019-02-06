@@ -3,8 +3,8 @@ import "./App.css";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { authenticate } from "./component/container/authenticate";
-import { NavigationContainer } from "./component/presentational/Navigation";
+import { authenticate } from "./components/container/authenticate";
+import { NavigationContainer } from "./components/presentational/Navigation";
 
 class App extends Component {
   render() {

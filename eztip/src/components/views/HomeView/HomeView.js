@@ -31,7 +31,7 @@ class HomeView extends Component {
 }
 
 HomeView.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
   getUsers: PropTypes.func.isRequired
 };
 

@@ -29,15 +29,14 @@ EmployeeListContainer.propTypes = {
       last_name: PropTypes.string.isRequired,
       profile_photo: PropTypes.string.isRequired,
       tagline: PropTypes.string.isRequired,
-      type_id: PropTypes.number.isRequired,
+      type_id: PropTypes.number,
       user_type: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
       working_since: PropTypes.string.isRequired
     })
   ),
   match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  key: PropTypes.number.isRequired
+  history: PropTypes.object.isRequired
 };
 
 export default EmployeeListContainer;
