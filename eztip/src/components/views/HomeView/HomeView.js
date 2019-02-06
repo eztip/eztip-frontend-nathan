@@ -9,22 +9,15 @@ import PropTypes from "prop-types";
 class HomeView extends Component {
   componentDidMount() {
     this.props.getUsers();
-    this.props.userType === "employee"
-      ? this.props.history.push("/welcome/employee")
-      : this.props.history.push("/welcome/guest");
   }
   render() {
     return (
       <div className="home__container">
-        <h1>Welcome!</h1>
-        <Route
-          path="/welcome/employee"
-          render={props => <EmployeeView {...props} />}
-        />
-        <Route
-          path="/welcome/guest"
-          render={props => <GuestView {...props} />}
-        />
+        {this.props.userType === "employee" ? (
+          <Route path="/" render={props => <EmployeeView {...props} />} />
+        ) : (
+          <Route path="/" render={props => <GuestView {...props} />} />
+        )}
       </div>
     );
   }

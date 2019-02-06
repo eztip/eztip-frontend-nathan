@@ -1,6 +1,10 @@
 import React from "react";
 
 const Employee = props => {
+  const goToUpdateForm = e => {
+    e.preventDefault();
+    props.history.push("/update");
+  };
   return (
     <div className="profile__container">
       <img src={props.employee.profile_photo} alt="Profile avatar" />
@@ -12,7 +16,9 @@ const Employee = props => {
       <p>ID: {props.employee.id}</p>
       <p>Employed Since: {props.employee.working_since}</p>
       <div className="employee-profile__buttons">
-        <button type="button">Update</button>
+        <button type="button" onClick={goToUpdateForm}>
+          Update
+        </button>
         <button type="button">Tips Received</button>
       </div>
     </div>

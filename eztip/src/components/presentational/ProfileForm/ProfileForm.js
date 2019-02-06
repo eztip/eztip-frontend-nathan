@@ -1,68 +1,103 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { updateUser, updateProfilePhoto } from "../../../store/actions";
 
-export default class ProfileForm extends Component {
+class ProfileForm extends Component {
   state = {
-    user: {
-      firstName: "",
-      lastName: "",
-      employer: "",
-      date: "",
+    userProfile: {
+      first_name: "",
+      last_name: "",
+      occupation: "",
+      profile_photo: "",
       tagline: "",
-      imageURL: ""
-    }
+      working_since: ""
+    },
+    selectedFile: null
   };
 
   handleChange = e => {
     this.setState({
-      user: {
-        ...this.state.user,
+      ...this.state,
+      userProfile: {
+        ...this.state.userProfile,
         [e.target.name]: e.target.value
       }
     });
   };
 
+  componentDidMount() {
+    return this.props.loggedIn
+      ? this.setState({
+          ...this.state,
+          userProfile: this.props.userProfile
+        })
+      : null;
+  }
+
+  goBack = e => {
+    e.preventDefault();
+    this.props.history.push("/");
+  };
+
+  handleFile = e => {
+    this.setState({
+      selectedFile: e.target.files[0]
+    });
+  };
+
+  updateProfile = e => {
+    e.preventDefault();
+    const fd = new FormData();
+    fd.append("image", this.state.selectedFile);
+    if (this.state.selectedFile)
+      this.props.updateProfilePhoto(this.state.userProfile.id, fd);
+    this.props.updateUser(this.state.userProfile);
+    this.props.history.push("/");
+  };
+
   render() {
     return (
-      <form className="profile__form">
+      <form
+        className="profile__form"
+        onSubmit={this.updateProfile}
+        method={this.props.loggedIn ? "Put" : "Post"}
+        encType="multipart/form-data"
+      >
         <input
           required
           autoComplete="off"
           type="text"
-          name="firstName"
+          name="first_name"
           placeholder="First name"
+          value={this.state.userProfile.first_name}
           onChange={this.handleChange}
         />
         <input
           required
           autoComplete="off"
           type="text"
-          name="lastName"
+          name="last_name"
           placeholder="Last name"
+          value={this.state.userProfile.last_name}
           onChange={this.handleChange}
         />
         <input
           required
           autoComplete="off"
           type="text"
-          name="employer"
-          placeholder="Employer"
-          onChange={this.handleChange}
-        />
-        <input
-          required
-          autoComplete="off"
-          type="text"
-          name="employer"
-          placeholder="Employer"
+          name="occupation"
+          placeholder="Occupation"
+          value={this.state.userProfile.occupation}
           onChange={this.handleChange}
         />
         <input
           required
           autoComplete="off"
           type="number"
-          name="date"
+          name="working_since"
           placeholder="Starting date of work"
+          value={this.state.userProfile.working_since}
           onChange={this.handleChange}
         />
         <input
@@ -71,21 +106,42 @@ export default class ProfileForm extends Component {
           type="text"
           name="tagline"
           placeholder="Tagline"
+          value={this.state.userProfile.tagline}
           onChange={this.handleChange}
         />
         <input
-          required
           autoComplete="off"
-          type="text"
-          name="imageURL"
+          type="file"
+          name="profile_photo"
           placeholder="Profile photo URL"
-          onChange={this.handleChange}
+          onChange={this.handleFile}
         />
+        <button type="submit">
+          {this.props.loggedIn ? "Update" : "Signup"}
+        </button>
+        <button type="button" onClick={this.goBack}>
+          Back
+        </button>
       </form>
     );
   }
 }
 
 ProfileForm.propTypes = {
-  // Insert proptypes
+  loggedIn: PropTypes.bool.isRequired
 };
+
+const mapStateToProps = state => ({
+  userProfile: state.userReducer.userProfile,
+  loggedIn: state.userReducer.loggedIn
+});
+
+const mapActionsToProps = {
+  updateUser,
+  updateProfilePhoto
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(ProfileForm);

@@ -25,7 +25,7 @@ class PaymentForm extends Component {
   };
   cancel = e => {
     e.preventDefault();
-    this.state.history.push(`/welcome/guest/${this.state.id}`);
+    this.state.history.push(`/employee/${this.state.id}`);
   };
   render() {
     return (
@@ -51,8 +51,8 @@ class PaymentForm extends Component {
         <input
           required
           autoComplete="off"
-          type="number"
-          name="expiration"
+          type="text"
+          name="number"
           placeholder="Expiration date"
           value={this.state.expiration}
           onChange={this.handleChange}
@@ -77,8 +77,7 @@ class PaymentForm extends Component {
 
 PaymentForm.propTypes = {
   history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  id: PropTypes.number.isRequired
+  match: PropTypes.object.isRequired
 };
 
 export default PaymentForm;

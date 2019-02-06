@@ -5,12 +5,17 @@ import { ProfileForm } from "../../presentational/ProfileForm";
 import { Route } from "react-router-dom";
 
 const EmployeeView = props => {
+  const { userProfile } = props;
   return (
     <div className="employee-profile__container">
       <h1>Employee</h1>
-      <Employee employee={props.userProfile} />
       <Route
-        path="/welcome/employee/update"
+        exact
+        path="/"
+        render={props => <Employee {...props} employee={userProfile} />}
+      />
+      <Route
+        path="/update"
         render={props => (
           <ProfileForm {...props} employee={props.userProfile} />
         )}

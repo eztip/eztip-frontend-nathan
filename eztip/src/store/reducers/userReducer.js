@@ -7,7 +7,14 @@ import {
   GET_USERS_ERROR,
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT_SITE,
+  UPDATE_USER_START,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
+  UPDATE_PHOTO_START,
+  UPDATE_PHOTO_SUCCESS,
+  UPDATE_PHOTO_ERROR
 } from "../types";
 
 const initialState = {
@@ -79,6 +86,39 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingInUser: false,
+        error: action.payload
+      };
+    case LOGOUT_SITE:
+      localStorage.clear();
+      return {
+        ...state,
+        loggedIn: false,
+        token: "",
+        loginMessage: "",
+        username: "",
+        userType: null,
+        users: []
+      };
+    case UPDATE_USER_START:
+      return state;
+    case UPDATE_USER_SUCCESS:
+      return {
+        ...state,
+        userProfile: action.payload
+      };
+    case UPDATE_PHOTO_START:
+      return state;
+    case UPDATE_PHOTO_SUCCESS:
+      return {
+        ...state,
+        userProfile: {
+          ...state.userProfile,
+          profile_photo: action.payload
+        }
+      };
+    case UPDATE_PHOTO_ERROR:
+      return {
+        ...state,
         error: action.payload
       };
     default:
