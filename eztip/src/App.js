@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
 import { authenticate } from "./components/container/authenticate";
-import { NavigationContainer } from "./components/presentational/Navigation";
+import { NavigationContainer } from "./components/container/NavigationContainer";
 
 class App extends Component {
   render() {

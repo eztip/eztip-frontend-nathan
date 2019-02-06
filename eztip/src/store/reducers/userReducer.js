@@ -7,7 +7,8 @@ import {
   GET_USERS_ERROR,
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT_SITE
 } from "../types";
 
 const initialState = {
@@ -80,6 +81,17 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         loggingInUser: false,
         error: action.payload
+      };
+    case LOGOUT_SITE:
+      localStorage.clear();
+      return {
+        ...state,
+        loggedIn: false,
+        token: "",
+        loginMessage: "",
+        username: "",
+        userType: null,
+        users: []
       };
     default:
       return state;

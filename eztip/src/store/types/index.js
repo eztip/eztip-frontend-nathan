@@ -1,5 +1,5 @@
 // =========================================================== User Reducer Types
-export const LOGIN = "LOGIN";
+export const LOGOUT_SITE = "LOGOUT_SITE";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_ERROR = "GET_USER_ERROR";

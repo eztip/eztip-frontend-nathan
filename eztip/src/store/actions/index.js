@@ -8,7 +8,8 @@ import {
   GET_USERS_ERROR,
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_ERROR
+  LOGIN_ERROR,
+  LOGOUT_SITE
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -50,4 +51,10 @@ export const loginSite = credentials => dispatch => {
     .catch(err => {
       dispatch({ type: LOGIN_ERROR, payload: err.data });
     });
+};
+
+export const logoutSite = () => {
+  return {
+    type: LOGOUT_SITE
+  };
 };
