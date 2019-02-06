@@ -3,11 +3,18 @@ import { connect } from "react-redux";
 import { Employee } from "../../presentational/Employee";
 import { ProfileForm } from "../../presentational/ProfileForm";
 import { Route } from "react-router-dom";
+import styled from "styled-components";
+
+const EmployeeProfileContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 const EmployeeView = props => {
   const { userProfile } = props;
   return (
-    <div className="employee-profile__container">
+    <EmployeeProfileContainer>
       <h1>Employee</h1>
       <Route
         exact
@@ -20,7 +27,7 @@ const EmployeeView = props => {
           <ProfileForm {...props} employee={props.userProfile} />
         )}
       />
-    </div>
+    </EmployeeProfileContainer>
   );
 };
 

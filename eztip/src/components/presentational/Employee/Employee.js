@@ -1,4 +1,9 @@
 import React from "react";
+import styled from "styled-components";
+
+const EmployeeProfile = styled.div`
+  margin: 115px 0 0;
+`;
 
 const Employee = props => {
   const goToUpdateForm = e => {
@@ -6,7 +11,7 @@ const Employee = props => {
     props.history.push("/update");
   };
   return (
-    <div className="profile__container">
+    <EmployeeProfile>
       <img src={props.employee.profile_photo} alt="Profile avatar" />
       <h2 className="username">Username: {props.employee.username}</h2>
       <p className="full-name">
@@ -21,7 +26,7 @@ const Employee = props => {
         </button>
         <button type="button">Tips Received</button>
       </div>
-    </div>
+    </EmployeeProfile>
   );
 };
 
