@@ -13,16 +13,13 @@ export const Global = css`
   h4 {
     font-family: "Raleway", sans-serif;
     font-weight: 700;
+    font-size: 2.4rem;
     text-transform: uppercase;
   }
   h1 {
     font-size: 3rem;
   }
-  h4 {
-    font-size: 1.6rem;
-    font-weight: 200;
-    opacity: 0.9;
-  }
+
   p,
   input {
     font-family: "Source Sans Pro", sans-serif;

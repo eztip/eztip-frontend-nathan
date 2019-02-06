@@ -5,8 +5,13 @@ import { GuestView } from "../GuestView";
 import { connect } from "react-redux";
 import { getUsers } from "../../../store/actions/index";
 import PropTypes from "prop-types";
-import { NavigationContainer } from "../../container/NavigationContainer";
+import { Navigation } from "../../presentational/Navigation";
 import styled from "styled-components";
+
+const HomeViewContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
 
 class HomeView extends Component {
   componentDidMount() {
@@ -14,17 +19,14 @@ class HomeView extends Component {
   }
   render() {
     return (
-      <div className="home__container">
-        <NavigationContainer
-          match={this.props.match}
-          history={this.props.history}
-        />
+      <HomeViewContainer>
+        <Navigation match={this.props.match} history={this.props.history} />
         {this.props.userType === "employee" ? (
           <Route path="/" render={props => <EmployeeView {...props} />} />
         ) : (
           <Route path="/" render={props => <GuestView {...props} />} />
         )}
-      </div>
+      </HomeViewContainer>
     );
   }
 }
