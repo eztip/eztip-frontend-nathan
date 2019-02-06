@@ -51,8 +51,8 @@ class PaymentForm extends Component {
         <input
           required
           autoComplete="off"
-          type="number"
-          name="expiration"
+          type="text"
+          name="number"
           placeholder="Expiration date"
           value={this.state.expiration}
           onChange={this.handleChange}

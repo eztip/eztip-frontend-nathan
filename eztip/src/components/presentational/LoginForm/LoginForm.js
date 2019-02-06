@@ -8,6 +8,9 @@ class LoginForm extends Component {
     loginUsername: "",
     loginPassword: ""
   };
+  componentDidMount() {
+    this.props.history.push("/");
+  }
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
