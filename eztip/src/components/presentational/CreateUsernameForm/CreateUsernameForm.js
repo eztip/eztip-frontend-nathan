@@ -47,13 +47,15 @@ const CreateUsernameContainer = styled.div`
 class CreateUsernameForm extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    user_type: ""
   };
   createUser = e => {
     e.preventDefault();
     this.props.registerUser({
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      user_type: this.state.user_type
     });
   };
   cancel = e => {
@@ -61,9 +63,12 @@ class CreateUsernameForm extends Component {
     this.props.history.push("/");
   };
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.setState(
+      {
+        [e.target.name]: e.target.value
+      },
+      () => console.log(this.state)
+    );
   };
   render() {
     return (
@@ -88,6 +93,19 @@ class CreateUsernameForm extends Component {
             placeholder="New password"
             onChange={this.handleChange}
           />
+          <select
+            required
+            name="user_type"
+            placeholder="Profile type"
+            onChange={this.handleChange}
+            defaultValue=""
+          >
+            <option disabled value="">
+              Please select a profile type
+            </option>
+            <option value="employee">Employee</option>
+            <option value="guest">Guest</option>
+          </select>
           <div>
             <button stype="submit">Sign Up</button>
             <button type="button" onClick={this.cancel}>

@@ -64,6 +64,7 @@ export const userReducer = (state = initialState, action) => {
     case GET_USERS_START:
       return state;
     case GET_USERS_SUCCESS:
+      console.log(action.payload);
       const userProfile = action.payload
         .filter(user => user.username === state.username)
         .pop();

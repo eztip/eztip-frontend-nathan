@@ -41,7 +41,7 @@ EmployeeListContainer.propTypes = {
       type_id: PropTypes.number,
       user_type: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
-      working_since: PropTypes.string.isRequired
+      working_since: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
   ),
   match: PropTypes.object.isRequired,
