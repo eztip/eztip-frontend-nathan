@@ -12,6 +12,7 @@ const NavContainer = styled.div`
   -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
   box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
   position: fixed;
+  padding: 0 3%;
   top: 0;
   left: 0;
 
@@ -20,7 +21,6 @@ const NavContainer = styled.div`
     max-width: 1200px;
     height: 80px;
     margin: 0 auto;
-    padding: 0 3%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

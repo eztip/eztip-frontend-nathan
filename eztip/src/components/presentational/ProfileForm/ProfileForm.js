@@ -5,6 +5,7 @@ import { updateUser, updateProfilePhoto } from "../../../store/actions";
 import styled from "styled-components";
 
 const ProfileFormContainer = styled.div`
+  background: white;
   border: 1px solid #b5b5b5;
   margin: 100px auto 0;
   padding: 35px 0;

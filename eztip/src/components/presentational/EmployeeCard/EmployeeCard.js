@@ -21,6 +21,9 @@ const EmployeeCard = props => {
   return (
     <Link to={`/employee/${employee.id}`}>
       <div className="employee__card">
+        <div>
+          <img src={employee.profile_photo} alt="Employee profile avatar" />
+        </div>
         <h2 className="employee__name">
           {employee.first_name} {employee.last_name}
         </h2>
