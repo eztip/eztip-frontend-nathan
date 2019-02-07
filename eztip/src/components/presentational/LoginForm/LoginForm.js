@@ -19,6 +19,7 @@ const LoginFormContainer = styled.div`
 
   h1 {
     margin: 0 0 10px;
+    text-transform: none;
   }
 
   form {

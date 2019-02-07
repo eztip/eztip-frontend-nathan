@@ -28,6 +28,7 @@ const NavContainer = styled.div`
     h1 {
       font-size: 3.5rem;
       font-weight: 900;
+      text-transform: lowercase;
     }
 
     div {
@@ -62,14 +63,14 @@ const NavigationContainer = props => {
   return (
     <NavContainer>
       <div>
-        <h1>EZTip</h1>
+        <h1>tippr</h1>
         <div>
           <NavLink exact to="/">
             Home
           </NavLink>
-          <NavLink to={props.userType === "guest" ? "/employee" : "/update"}>
-            {props.userType === "guest" ? "Payment" : "Update"}
-          </NavLink>
+          {props.userType === "employee" && (
+            <NavLink to="/update">Update</NavLink>
+          )}
           <Link to="/" onClick={logout}>
             Logout
           </Link>
