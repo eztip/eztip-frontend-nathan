@@ -14,4 +14,4 @@ A repository for the front-end architecture and framework of the EZTip payment p
 
 ## Acknowledgements
 
-- The entire _tippr_ team of Lambda School students
+- The entire _tippr_ team of Lambda School students that worked a whole week to turn out a great product
