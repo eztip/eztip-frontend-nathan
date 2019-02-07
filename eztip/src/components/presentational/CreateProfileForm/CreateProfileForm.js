@@ -54,12 +54,11 @@ class CreateProfileForm extends Component {
       first_name: "",
       last_name: "",
       occupation: "",
-      profile_photo: "",
       tagline: "",
       working_since: "",
-      username: null,
-      id: null
+      username: null
     },
+    id: null,
     selectedFile: null
   };
 
@@ -68,9 +67,9 @@ class CreateProfileForm extends Component {
       ...this.state,
       userProfile: {
         ...this.state.userProfile,
-        id: this.props.newAccountID,
         username: this.props.newAccountUsername
-      }
+      },
+      id: this.props.newAccountID
     });
   }
 
@@ -100,7 +99,7 @@ class CreateProfileForm extends Component {
     const fd = new FormData();
     fd.append("image", this.state.selectedFile);
     if (this.state.selectedFile) {
-      this.props.updateProfilePhoto(this.state.userProfile.id, fd);
+      this.props.updateProfilePhoto(this.state.id, fd);
     }
     this.props.createNewProfile(this.state.userProfile);
     this.props.history.push("/");

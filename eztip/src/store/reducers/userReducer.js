@@ -49,7 +49,6 @@ export const userReducer = (state = initialState, action) => {
         loadingEmployee: true
       };
     case GET_USER_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         loadingEmployee: false,
@@ -83,7 +82,6 @@ export const userReducer = (state = initialState, action) => {
         loggingInUser: true
       };
     case LOGIN_SUCCESS:
-      console.log("Login", action.payload.user_type);
       localStorage.setItem("token", action.payload.token);
       localStorage.setItem("userType", action.payload.user_type);
       return {
@@ -172,6 +170,7 @@ export const userReducer = (state = initialState, action) => {
     case CREATE_PROFILE_SUCCESS:
       return {
         ...state,
+        userCreated: false,
         profileCreated: true,
         creatingProfile: false
       };
