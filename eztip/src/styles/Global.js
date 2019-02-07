@@ -1,4 +1,17 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
+
+const hoverBtn = keyframes`
+  0% {
+    color: black;
+    background: #43d9b8;
+    border: 1px solid #43d9b8;
+  }
+  100% {
+    color: #43d9b8;
+    background: white;
+    border: 1px solid #43d9b8;
+  }
+`;
 
 export const Global = css`
   * {
@@ -6,6 +19,7 @@ export const Global = css`
   }
   html {
     font-size: 62.5%;
+    background: #f8f8f8;
   }
   h1,
   h2,
@@ -31,10 +45,6 @@ export const Global = css`
     font-size: 1.6rem;
     color: #43d9b8;
     font-family: "Source Sans Pro", sans-serif;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
   input {
     -webkit-appearance: none;
@@ -46,30 +56,21 @@ export const Global = css`
     font-family: "Source Sans Pro", sans-serif;
   }
   button {
-    /* font-family: "Raleway", sans-serif;
-    font-weight: 400;
-    height: 40px;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    border: 1px solid #b5b5b5;
-    border-radius: 5px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px; */
     color: black;
     background: #43d9b8;
     font-size: 1.6rem;
     padding: 12px 16px;
     border: 1px solid #43d9b8;
     border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     text-transform: uppercase;
     font-family: "Raleway", sans-serif;
     outline: none;
     cursor: pointer;
 
     &:hover {
-      color: #43d9b8;
-      background: white;
-      border: 1px solid #43d9b8;
+      animation: ${hoverBtn} 0.2s forwards;
     }
   }
   img {

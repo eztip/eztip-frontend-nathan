@@ -11,6 +11,7 @@ import styled from "styled-components";
 const HomeViewContainer = styled.div`
   width: 100%;
   position: relative;
+  padding: 0 3%;
 `;
 
 class HomeView extends Component {

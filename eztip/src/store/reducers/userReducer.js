@@ -111,7 +111,8 @@ export const userReducer = (state = initialState, action) => {
         loginMessage: "",
         username: "",
         userType: null,
-        users: []
+        users: [],
+        userProfile: {}
       };
     case UPDATE_USER_START:
       return state;

@@ -5,11 +5,18 @@ import { EmployeeListContainer } from "../../container/EmployeeListContainer";
 import { EmployeeCard } from "../../presentational/EmployeeCard";
 import { Route } from "react-router-dom";
 import { PaymentFormContainer } from "../../container/PaymentFormContainer";
+import styled from "styled-components";
+
+const GuestContainer = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 const GuestView = props => {
   const users = props.users;
   return (
-    <div className="guest__container">
+    <GuestContainer>
       <Route
         exact
         path="/"
@@ -24,7 +31,7 @@ const GuestView = props => {
         path={"/employee/:id/tip"}
         render={props => <PaymentFormContainer {...props} />}
       />
-    </div>
+    </GuestContainer>
   );
 };
 

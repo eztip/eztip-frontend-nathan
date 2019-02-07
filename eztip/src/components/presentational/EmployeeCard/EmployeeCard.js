@@ -2,7 +2,69 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import "./EmployeeCard.css";
+import styled from "styled-components";
+
+const EmployeeCardContainer = styled.div`
+  width: 100%;
+  margin: 100px auto 0;
+  background: white;
+  border: 1px solid #b5b5b5;
+  display: flex;
+  /* max-width: 500px;
+  width: 100%; */
+
+  a {
+    width: 100%;
+    margin: 35px 7%;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+
+    div:first-child {
+      width: auto;
+      max-width: 40%;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    div:last-child {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 3%;
+
+      h1 {
+        margin-bottom: 15px;
+        color: black;
+      }
+
+      p {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: black;
+
+        span {
+          font-weight: 700;
+        }
+      }
+
+      div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 0;
+
+        button {
+          margin: 0 0 10px;
+          width: 47%;
+        }
+      }
+    }
+  }
+`;
 
 const EmployeeCard = props => {
   const employee = props.employee
@@ -19,26 +81,47 @@ const EmployeeCard = props => {
     props.history.push("/");
   };
   return (
-    <Link to={`/employee/${employee.id}`}>
-      <div className="employee__card">
-        <h2 className="employee__name">
-          {employee.first_name} {employee.last_name}
-        </h2>
-        <p className="employee__id">{employee.id}</p>
-        <p className="employee__tagline">{employee.tagline}</p>
-        <p className="employee__working-since">{employee.working_since}</p>
-        {!props.employee && (
-          <div className="employee__buttons">
-            <button type="button" onClick={giveTip}>
-              Give Tip
-            </button>
-            <button type="button" onClick={goBack}>
-              Back
-            </button>
-          </div>
-        )}
-      </div>
-    </Link>
+    <EmployeeCardContainer>
+      <Link to={`/employee/${employee.id}`}>
+        <div>
+          <img src={employee.profile_photo} alt="Profile avatar" />
+        </div>
+        <div>
+          <h1>Employee Profile</h1>
+          <p>
+            <span>Username:</span> {employee.username}
+          </p>
+          <p>
+            <span>First name:</span> {employee.first_name}
+          </p>
+          <p>
+            <span>Last name:</span> {employee.last_name}
+          </p>
+          <p>
+            <span>Occupation:</span> {employee.occupation}
+          </p>
+          <p>
+            <span>Employed since:</span> {employee.working_since}
+          </p>
+          <p>
+            <span>Tagline:</span> {employee.tagline}
+          </p>
+          <p>
+            <span>Employee ID:</span> {employee.id}
+          </p>
+          {!props.employee && (
+            <div className="employee__buttons">
+              <button type="button" onClick={giveTip}>
+                Give Tip
+              </button>
+              <button type="button" onClick={goBack}>
+                Back
+              </button>
+            </div>
+          )}
+        </div>
+      </Link>
+    </EmployeeCardContainer>
   );
 };
 

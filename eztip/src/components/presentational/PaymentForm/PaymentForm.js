@@ -2,6 +2,52 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { payTip } from "../../../store/actions";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import { isError } from "util";
+
+const PaymentFormContainer = styled.div`
+  background: white;
+  border: 1px solid #b5b5b5;
+  margin: 130px auto 0;
+  padding: 35px 0;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    margin: 0 0 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    input {
+      margin: 15px;
+      width: 70%;
+
+      &:last-of-type {
+        padding-top: 9px;
+      }
+    }
+
+    div {
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        margin: 15px 0 10px;
+        width: 47%;
+      }
+    }
+  }
+`;
 
 class PaymentForm extends Component {
   state = {
@@ -11,13 +57,18 @@ class PaymentForm extends Component {
     verification: "",
     match: null,
     history: null,
-    id: null
+    id: null,
+    employeeName: ""
   };
   componentDidMount() {
+    const employeeName = this.props.users
+      .filter(user => user.id.toString() === this.props.id)
+      .pop();
     this.setState({
       match: this.props.match,
       history: this.props.history,
-      id: this.props.id
+      id: this.props.id,
+      employeeName: `${employeeName.first_name} ${employeeName.last_name}`
     });
   }
   handleChange = e => {
@@ -38,49 +89,55 @@ class PaymentForm extends Component {
     this.state.history.push(`/employee/${this.state.id}`);
   };
   render() {
+    const name = this.state.employeeName ? this.state.employeeName : "Employee";
     return (
-      <form onSubmit={this.submitTip} className="payment-form">
-        <input
-          required
-          autoComplete="off"
-          type="number"
-          name="payment"
-          placeholder="Tip amount"
-          value={this.state.payment}
-          onChange={this.handleChange}
-        />
-        <input
-          required
-          autoComplete="off"
-          type="number"
-          name="ccNumber"
-          placeholder="Credit card number"
-          value={this.state.ccNumber}
-          onChange={this.handleChange}
-        />
-        <input
-          required
-          autoComplete="off"
-          type="number"
-          name="expiration"
-          placeholder="Expiration date"
-          value={this.state.expiration}
-          onChange={this.handleChange}
-        />
-        <input
-          required
-          autoComplete="off"
-          type="number"
-          name="verification"
-          placeholder="Verification code"
-          value={this.state.verification}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Send Tip</button>
-        <button type="button" onClick={this.cancel}>
-          Cancel
-        </button>
-      </form>
+      <PaymentFormContainer>
+        <h1>Tip {name}</h1>
+        <form onSubmit={this.submitTip} className="payment-form">
+          <input
+            required
+            autoComplete="off"
+            type="number"
+            name="payment"
+            placeholder="Tip amount"
+            value={this.state.payment}
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            autoComplete="off"
+            type="number"
+            name="ccNumber"
+            placeholder="Credit card number"
+            value={this.state.ccNumber}
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            autoComplete="off"
+            type="number"
+            name="expiration"
+            placeholder="Expiration date"
+            value={this.state.expiration}
+            onChange={this.handleChange}
+          />
+          <input
+            required
+            autoComplete="off"
+            type="number"
+            name="verification"
+            placeholder="Verification code"
+            value={this.state.verification}
+            onChange={this.handleChange}
+          />
+          <div>
+            <button type="submit">Send Tip</button>
+            <button type="button" onClick={this.cancel}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </PaymentFormContainer>
     );
   }
 }
@@ -90,11 +147,15 @@ PaymentForm.propTypes = {
   match: PropTypes.object.isRequired
 };
 
+const mapStateToProps = state => ({
+  users: state.userReducer.users
+});
+
 const mapActionsToProps = {
   payTip
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionsToProps
 )(PaymentForm);

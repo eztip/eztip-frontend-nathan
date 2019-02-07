@@ -1,12 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { EmployeeCard } from "../../presentational/EmployeeCard";
+import styled from "styled-components";
+
+const EmployeeList = styled.div`
+  width: 100%;
+  margin: 127px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
 
 const EmployeeListContainer = props => {
   const employees = props.users.filter(user => user.user_type === "employee");
   return (
-    <div className="employee-list__container">
-      <h1>Select an Employee to Tip:</h1>
+    <EmployeeList>
+      <h1>Select Employee</h1>
       {employees.map(employee => {
         return (
           <EmployeeCard
@@ -17,7 +26,7 @@ const EmployeeListContainer = props => {
           />
         );
       })}
-    </div>
+    </EmployeeList>
   );
 };
 

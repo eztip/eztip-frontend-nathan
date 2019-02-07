@@ -6,6 +6,7 @@ import { loginSite } from "../../../store/actions";
 import styled from "styled-components";
 
 const LoginFormContainer = styled.div`
+  background: white;
   border: 1px solid #b5b5b5;
   margin: 15vh auto 0;
   padding: 35px 0;
@@ -37,7 +38,7 @@ const LoginFormContainer = styled.div`
       justify-content: space-between;
 
       button {
-        margin: 10px 0 0;
+        margin: 15px 0 10px;
         width: 47%;
       }
     }
@@ -109,7 +110,7 @@ class LoginForm extends Component {
         </LoginFormContainer>
         <SignUpFormContainer>
           <p>
-            Need an account? <Link to="/signup">Signup</Link>
+            Need an account? <Link to="/signup">Sign Up</Link>
           </p>
         </SignUpFormContainer>
       </>

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 const CreateUsernameContainer = styled.div`
+  background: white;
   border: 1px solid #b5b5b5;
   margin: 15vh auto 0;
   padding: 35px 0;
@@ -36,7 +37,7 @@ const CreateUsernameContainer = styled.div`
       justify-content: space-between;
 
       button {
-        margin: 10px 0;
+        margin: 15px 0 10px;
         width: 47%;
       }
     }
