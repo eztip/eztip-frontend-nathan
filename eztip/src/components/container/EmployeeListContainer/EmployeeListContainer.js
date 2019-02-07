@@ -1,23 +1,41 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { EmployeeCard } from "../../presentational/EmployeeCard";
+import styled from "styled-components";
+
+const EmployeeList = styled.div`
+  width: 100%;
+  margin-top: 127px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  div {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+`;
 
 const EmployeeListContainer = props => {
   const employees = props.users.filter(user => user.user_type === "employee");
   return (
-    <div className="employee-list__container">
-      <h1>Select an Employee to Tip:</h1>
-      {employees.map(employee => {
-        return (
-          <EmployeeCard
-            match={props.match}
-            history={props.history}
-            employee={employee}
-            key={employee.id}
-          />
-        );
-      })}
-    </div>
+    <EmployeeList>
+      <h1>Select an Employee</h1>
+      <div>
+        {employees.map(employee => {
+          return (
+            <EmployeeCard
+              match={props.match}
+              history={props.history}
+              employee={employee}
+              key={employee.id}
+            />
+          );
+        })}
+      </div>
+    </EmployeeList>
   );
 };
 

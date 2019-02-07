@@ -60,21 +60,14 @@ export const Global = css`
     font-family: "Source Sans Pro", sans-serif;
   }
   button {
-    /* font-family: "Raleway", sans-serif;
-    font-weight: 400;
-    height: 40px;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    border: 1px solid #b5b5b5;
-    border-radius: 5px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px; */
     color: black;
     background: #43d9b8;
     font-size: 1.6rem;
     padding: 12px 16px;
     border: 1px solid #43d9b8;
     border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     text-transform: uppercase;
     font-family: "Raleway", sans-serif;
     outline: none;

@@ -2,7 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import "./EmployeeCard.css";
+import styled from "styled-components";
+
+const EmployeeCardContainer = styled.div`
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    max-width: 100%;
+    border: 1px solid red;
+  }
+`;
 
 const EmployeeCard = props => {
   const employee = props.employee
@@ -20,7 +35,7 @@ const EmployeeCard = props => {
   };
   return (
     <Link to={`/employee/${employee.id}`}>
-      <div className="employee__card">
+      <EmployeeCardContainer>
         <div>
           <img src={employee.profile_photo} alt="Employee profile avatar" />
         </div>
@@ -40,7 +55,7 @@ const EmployeeCard = props => {
             </button>
           </div>
         )}
-      </div>
+      </EmployeeCardContainer>
     </Link>
   );
 };

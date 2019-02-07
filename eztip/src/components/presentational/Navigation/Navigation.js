@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutSite } from "../../../store/actions";
 import styled from "styled-components";
@@ -20,29 +20,34 @@ const NavContainer = styled.div`
     width: 100%;
     max-width: 1200px;
     height: 80px;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    border: 1px solid red;
+    align-items: baseline;
 
     h1 {
       font-size: 3.5rem;
       font-weight: 900;
-      margin-bottom: 15px;
     }
 
-    a {
-      p {
+    div {
+      display: flex;
+      justify-content: flex-end;
+
+      a {
         font-family: "Raleway", sans-serif;
         font-weight: 700;
         font-size: 1.6rem;
         color: black;
-        margin-bottom: 15px;
+        margin-left: 2%;
 
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      a.active {
+        text-decoration: underline;
       }
     }
   }
@@ -59,8 +64,14 @@ const NavigationContainer = props => {
       <div>
         <h1>EZTip</h1>
         <div>
-          <Link to="/">
-            <p onClick={logout}>Logout</p>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <NavLink to={props.userType === "guest" ? "/employee" : "/update"}>
+            {props.userType === "guest" ? "Payment" : "Update"}
+          </NavLink>
+          <Link to="/" onClick={logout}>
+            Logout
           </Link>
         </div>
       </div>
@@ -68,11 +79,15 @@ const NavigationContainer = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  userType: state.userReducer.userType
+});
+
 const mapActionsToProps = {
   logoutSite
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapActionsToProps
 )(NavigationContainer);
