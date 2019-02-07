@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { payTip } from "../../../store/actions";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { isError } from "util";
 
 const PaymentFormContainer = styled.div`
   background: white;

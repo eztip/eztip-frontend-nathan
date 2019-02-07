@@ -63,12 +63,9 @@ class CreateUsernameForm extends Component {
     this.props.history.push("/");
   };
   handleChange = e => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value
-      },
-      () => console.log(this.state)
-    );
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
   render() {
     return (

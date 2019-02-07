@@ -36,7 +36,7 @@ EmployeeListContainer.propTypes = {
       first_name: PropTypes.string.isRequired,
       id: PropTypes.number.isRequired,
       last_name: PropTypes.string.isRequired,
-      profile_photo: PropTypes.string.isRequired,
+      profile_photo: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       tagline: PropTypes.string.isRequired,
       type_id: PropTypes.number,
       user_type: PropTypes.string.isRequired,

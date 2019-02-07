@@ -4,6 +4,7 @@ import { Employee } from "../../presentational/Employee";
 import { ProfileForm } from "../../presentational/ProfileForm";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const EmployeeProfileContainer = styled.div`
   width: 100%;
@@ -29,6 +30,20 @@ const EmployeeView = props => {
       />
     </EmployeeProfileContainer>
   );
+};
+
+Employee.propTypes = {
+  employee: PropTypes.shape({
+    first_name: PropTypes.string,
+    id: PropTypes.number,
+    last_name: PropTypes.string,
+    profile_photo: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    tagline: PropTypes.string,
+    type_id: PropTypes.number,
+    user_type: PropTypes.string,
+    username: PropTypes.string,
+    working_since: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  })
 };
 
 const mapStateToProps = state => ({

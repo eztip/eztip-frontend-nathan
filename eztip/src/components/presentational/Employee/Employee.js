@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const EmployeeProfile = styled.div`
   margin: 100px auto 0;
@@ -60,6 +61,7 @@ const EmployeeProfileContent = styled.div`
 `;
 
 const Employee = props => {
+  const { employee } = props;
   const goToUpdateForm = e => {
     e.preventDefault();
     props.history.push("/update");
@@ -68,30 +70,30 @@ const Employee = props => {
     <EmployeeProfile>
       <EmployeeProfileContent>
         <div>
-          <img src={props.employee.profile_photo} alt="Profile avatar" />
+          <img src={employee.profile_photo} alt="Profile avatar" />
         </div>
         <div>
           <h1>Personal Profile</h1>
           <p>
-            <span>Username:</span> {props.employee.username}
+            <span>Username:</span> {employee.username}
           </p>
           <p>
-            <span>First name:</span> {props.employee.first_name}
+            <span>First name:</span> {employee.first_name}
           </p>
           <p>
-            <span>Last name:</span> {props.employee.last_name}
+            <span>Last name:</span> {employee.last_name}
           </p>
           <p>
-            <span>Occupation:</span> {props.employee.occupation}
+            <span>Occupation:</span> {employee.occupation}
           </p>
           <p>
-            <span>Employed since:</span> {props.employee.working_since}
+            <span>Employed since:</span> {employee.working_since}
           </p>
           <p>
-            <span>Tagline:</span> {props.employee.tagline}
+            <span>Tagline:</span> {employee.tagline}
           </p>
           <p>
-            <span>Employee ID:</span> {props.employee.id}
+            <span>Employee ID:</span> {employee.id}
           </p>
           <div>
             <button type="button" onClick={goToUpdateForm}>
@@ -103,6 +105,20 @@ const Employee = props => {
       </EmployeeProfileContent>
     </EmployeeProfile>
   );
+};
+
+Employee.propTypes = {
+  employee: PropTypes.shape({
+    first_name: PropTypes.string,
+    id: PropTypes.number,
+    last_name: PropTypes.string,
+    profile_photo: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    tagline: PropTypes.string,
+    type_id: PropTypes.number,
+    user_type: PropTypes.string,
+    username: PropTypes.string,
+    working_since: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  })
 };
 
 export default Employee;
