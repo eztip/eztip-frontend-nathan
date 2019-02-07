@@ -45,10 +45,6 @@ export const Global = css`
     font-size: 1.6rem;
     color: #43d9b8;
     font-family: "Source Sans Pro", sans-serif;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
   input {
     -webkit-appearance: none;

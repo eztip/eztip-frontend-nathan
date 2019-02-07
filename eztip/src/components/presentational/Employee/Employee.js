@@ -37,7 +37,7 @@ const EmployeeProfileContent = styled.div`
 
     p {
       margin-bottom: 20px;
-      font-size: 1.6rem;
+      font-size: 2rem;
 
       span {
         font-weight: 700;
