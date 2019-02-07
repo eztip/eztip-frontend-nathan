@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const EmployeeProfile = styled.div`
-  margin: 115px 0 0;
+  margin: 100px 0 0;
+
+  div:first-child {
+    margin: 0 auto;
+    width: 30%;
+  }
 `;
 
 const Employee = props => {
@@ -12,7 +17,9 @@ const Employee = props => {
   };
   return (
     <EmployeeProfile>
-      <img src={props.employee.profile_photo} alt="Profile avatar" />
+      <div>
+        <img src={props.employee.profile_photo} alt="Profile avatar" />
+      </div>
       <h2 className="username">Username: {props.employee.username}</h2>
       <p className="full-name">
         Full Name: {props.employee.first_name} {props.employee.last_name}

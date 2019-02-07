@@ -2,15 +2,23 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
 import { LoginForm } from "../../presentational/LoginForm";
 import { CreateUsernameForm } from "../../presentational/CreateUsernameForm";
 import { CreateProfileForm } from "../../presentational/CreateProfileForm";
 
+const LoginViewContainer = styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 5%;
+`;
+
 class LoginView extends Component {
   render() {
     return (
-      <div>
+      <LoginViewContainer>
         <Route exact path="/" render={props => <LoginForm {...props} />} />
         {this.props.userCreated ? (
           <Route
@@ -23,7 +31,7 @@ class LoginView extends Component {
             render={props => <CreateUsernameForm {...props} />}
           />
         )}
-      </div>
+      </LoginViewContainer>
     );
   }
 }

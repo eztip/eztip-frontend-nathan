@@ -18,7 +18,33 @@ const NavContainer = styled.div`
   div {
     width: 100%;
     max-width: 1200px;
+    height: 80px;
     margin: 0 auto;
+    padding: 0 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid red;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    a {
+      p {
+        font-family: "Raleway", sans-serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        color: black;
+        margin-bottom: 15px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 `;
 
@@ -31,9 +57,12 @@ const NavigationContainer = props => {
   return (
     <NavContainer>
       <div>
-        <Link to="/">
-          <button onClick={logout}>Logout</button>
-        </Link>
+        <h1>EZTip</h1>
+        <div>
+          <Link to="/">
+            <p onClick={logout}>Logout</p>
+          </Link>
+        </div>
       </div>
     </NavContainer>
   );

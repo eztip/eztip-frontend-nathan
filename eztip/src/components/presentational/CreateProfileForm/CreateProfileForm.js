@@ -5,6 +5,7 @@ import { createNewProfile, updateProfilePhoto } from "../../../store/actions";
 import styled from "styled-components";
 
 const CreateProfileContainer = styled.div`
+  background: white;
   border: 1px solid #b5b5b5;
   margin: 15vh auto 0;
   padding: 35px 0;
@@ -40,7 +41,7 @@ const CreateProfileContainer = styled.div`
       justify-content: center;
 
       button {
-        margin: 10px 0;
+        margin: 15px 0 10px;
         width: 100%;
       }
     }
