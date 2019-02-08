@@ -85,7 +85,7 @@ class PaymentForm extends Component {
       worker_id: this.state.id,
       tip_amount: this.state.payment
     });
-    this.state.history.push(`/employee/${this.state.id}`);
+    // this.state.history.push(`/employee/${this.state.id}`);
   };
   render() {
     const name = this.state.employeeName ? this.state.employeeName : "Employee";
