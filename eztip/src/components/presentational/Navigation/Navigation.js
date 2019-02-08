@@ -15,6 +15,7 @@ const NavContainer = styled.div`
   padding: 0 3%;
   top: 0;
   left: 0;
+  z-index: 10;
 
   div {
     width: 100%;

@@ -27,4 +27,8 @@ App.propTypes = {
 
 const DisplayedComponent = authenticate;
 
+const mapStateToProps = state => ({
+  paymentProcessFinished: state.paymentReducer.paymentProcessFinished
+});
+
 export default withRouter(App);

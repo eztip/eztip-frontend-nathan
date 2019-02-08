@@ -60,6 +60,7 @@ class CreateUsernameForm extends Component {
     password: "",
     user_type: ""
   };
+
   createUser = e => {
     e.preventDefault();
     this.props.registerUser({
@@ -68,15 +69,18 @@ class CreateUsernameForm extends Component {
       user_type: this.state.user_type
     });
   };
+
   cancel = e => {
     e.preventDefault();
     this.props.history.push("/");
   };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
   render() {
     return (
       <CreateUsernameContainer>

@@ -79,5 +79,7 @@ export const Global = css`
   }
   .App {
     width: 100%;
+    min-height: 100vh;
+    position: relative;
   }
 `;
