@@ -26,9 +26,10 @@ const NavContainer = styled.div`
     align-items: baseline;
 
     h1 {
-      font-size: 3.5rem;
-      font-weight: 900;
+      font-size: 3.8rem;
+      font-weight: 700;
       text-transform: lowercase;
+      font-family: "Ubuntu", sans-serif;
     }
 
     div {
