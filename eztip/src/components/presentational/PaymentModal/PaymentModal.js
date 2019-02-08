@@ -9,7 +9,10 @@ const Overlay = styled.div`
   height: 100vh;
   background: rgba(247, 247, 247, 0.7);
   z-index: 15;
-  position: fixed;
+  position: absolute;
+  top: -130px;
+  left: 0;
+  padding-top: 130px;
 
   div {
     background: white;
@@ -18,9 +21,17 @@ const Overlay = styled.div`
     padding: 35px 0;
     max-width: 500px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     -webkit-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
     box-shadow: 0px 3px 13px 0px rgba(0, 0, 0, 0.19);
+
+    button {
+      margin-top: 35px;
+      width: 50%;
+    }
   }
 `;
 
@@ -28,18 +39,18 @@ const PaymentModal = props => {
   const handleModalBtn = e => {
     e.preventDefault();
     if (props.tipPaid) {
-      props.resetPaymentForm();
+      props.history.push("/");
     }
     props.resetPaymentForm();
   };
   return (
     <Overlay>
       <div>
-        <p>
+        <h1>
           {props.tipPaid
             ? "Tip paid successfully."
             : "Error. Please try again."}
-        </p>
+        </h1>
         <button type="button" onClick={handleModalBtn}>
           OKAY
         </button>
