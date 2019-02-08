@@ -5,6 +5,7 @@ import { ProfileForm } from "../../presentational/ProfileForm";
 import { Route } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+// import TipReiceivedModal from "../../presentational/TipReceivedModal/TipReceivedModal";
 
 const EmployeeProfileContainer = styled.div`
   width: 100%;
@@ -28,6 +29,10 @@ const EmployeeView = props => {
           <ProfileForm {...props} employee={props.userProfile} />
         )}
       />
+      {/* <Route
+        path="/tipReceived/:id"
+        render={props => <TipReiceivedModal {...props} />}
+      /> */}
     </EmployeeProfileContainer>
   );
 };
