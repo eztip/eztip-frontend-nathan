@@ -22,10 +22,13 @@ class HomeView extends Component {
   render() {
     return (
       <>
-        {/* {this.props.paymentProcessFinished && (
-          <PaymentModal match={this.props.match} history={this.props.history} />
-        )} */}
         <HomeViewContainer>
+          {this.props.paymentProcessFinished && (
+            <PaymentModal
+              match={this.props.match}
+              history={this.props.history}
+            />
+          )}
           <Navigation match={this.props.match} history={this.props.history} />
           {this.props.userType === "employee" ? (
             <Route path="/" render={props => <EmployeeView {...props} />} />
