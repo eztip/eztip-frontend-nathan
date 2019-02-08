@@ -24,7 +24,8 @@ import {
   PAY_TIP_ERROR,
   CREATE_PROFILE_START,
   CREATE_PROFILE_SUCCESS,
-  CREATE_PROFILE_ERROR
+  CREATE_PROFILE_ERROR,
+  RESET_PAYMENT_FORM
 } from "../types";
 
 export const getUserByID = id => dispatch => {
@@ -131,11 +132,17 @@ export const createNewProfile = info => dispatch => {
   const token = localStorage.getItem("token");
   const reqOptions = { headers: { authorization: token } };
   axios
-    .post("https://eztip.herokuapp.com/workers", info, reqOptions)
+    .post("https://eztip.herokuapp.com/workers", info, reqOptions) // Ben = post, Alex = put
     .then(res => {
       dispatch({ type: CREATE_PROFILE_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: CREATE_PROFILE_ERROR, payload: err.payload });
     });
+};
+
+export const resetPaymentForm = () => {
+  return {
+    type: RESET_PAYMENT_FORM
+  };
 };

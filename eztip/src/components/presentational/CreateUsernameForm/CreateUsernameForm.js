@@ -44,12 +44,23 @@ const CreateUsernameContainer = styled.div`
   }
 `;
 
+const Dropdown = styled.select`
+  width: 70%;
+  display: block;
+  padding: 5px;
+  height: 40px;
+  margin: 15px;
+  font-size: 1.4rem;
+  border: 1px solid #b5b5b5;
+`;
+
 class CreateUsernameForm extends Component {
   state = {
     username: "",
     password: "",
     user_type: ""
   };
+
   createUser = e => {
     e.preventDefault();
     this.props.registerUser({
@@ -58,15 +69,18 @@ class CreateUsernameForm extends Component {
       user_type: this.state.user_type
     });
   };
+
   cancel = e => {
     e.preventDefault();
     this.props.history.push("/");
   };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
   render() {
     return (
       <CreateUsernameContainer>
@@ -90,7 +104,7 @@ class CreateUsernameForm extends Component {
             placeholder="New password"
             onChange={this.handleChange}
           />
-          <select
+          <Dropdown
             required
             name="user_type"
             placeholder="Profile type"
@@ -98,11 +112,11 @@ class CreateUsernameForm extends Component {
             defaultValue=""
           >
             <option disabled value="">
-              Please select a profile type
+              Select profile type
             </option>
             <option value="employee">Employee</option>
             <option value="guest">Guest</option>
-          </select>
+          </Dropdown>
           <div>
             <button stype="submit">Sign Up</button>
             <button type="button" onClick={this.cancel}>
