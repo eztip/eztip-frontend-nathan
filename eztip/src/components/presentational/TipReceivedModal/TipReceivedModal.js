@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
+import axios from "axios";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 
-const EmployeeProfile = styled.div`
+const TipProfile = styled.div`
   margin: 100px auto 0;
   background: white;
   border: 1px solid #b5b5b5;
@@ -11,7 +11,7 @@ const EmployeeProfile = styled.div`
   width: 100%; */
 `;
 
-const EmployeeProfileContent = styled.div`
+const TipContent = styled.div`
   width: 100%;
   margin: 35px 7%;
   display: flex;
@@ -177,74 +177,37 @@ const EmployeeProfileContent = styled.div`
   }
 `;
 
-const Employee = props => {
-  const { employee } = props;
-  const goToUpdateForm = e => {
-    e.preventDefault();
-    props.history.push("/update");
+class TipReiceived extends Component {
+  state = {
+    user: []
   };
-  const goToTipReceived = e => {
-    props.history.push(`/tipReceived/${employee.id}`);
-  };
-  return (
-    <EmployeeProfile>
-      <EmployeeProfileContent>
-        <div>
-          <img src={employee.profile_photo} alt="Profile avatar" />
-        </div>
-        <div>
-          <h1>Employee Profile</h1>
-          <div className="employee-first">
-            <p>
-              <span>Username:</span> {employee.username}
-            </p>
-            <p>
-              <span>First name:</span> {employee.first_name}
-            </p>
-            <p>
-              <span>Last name:</span> {employee.last_name}
-            </p>
-            <p>
-              <span>Occupation:</span> {employee.occupation}
-            </p>
-          </div>
-          <div className="employee-second">
-            <p>
-              <span>Employed since:</span> {employee.working_since}
-            </p>
-            <p>
-              <span>Tagline:</span> {employee.tagline}
-            </p>
-            <p>
-              <span>Employee ID:</span> {employee.id}
-            </p>
-          </div>
+  async componentDidMount() {
+    const { id } = this.props.match.params;
+    const token = localStorage.getItem("token");
+    const reqOptions = {
+      headers: { authorization: token }
+    };
+    const user = await axios.get(
+      `http://localhost:5000/workers/${id}`,
+      reqOptions
+    );
+    console.log("bt1");
+    await this.setState({ user: user.data });
+    console.log("bt2");
+  }
+  render() {
+    console.log(this.state.user.tips);
+    return (
+      <TipProfile>
+        <TipContent>
           <div>
-            <button type="button" onClick={goToUpdateForm}>
-              Update
-            </button>
-            <button type="button" onClick={goToTipReceived}>
-              Tips Received
-            </button>
+            <h2>Total Tips Received</h2>
+            <h2>$ {this.state.user.total_tip}</h2>
           </div>
-        </div>
-      </EmployeeProfileContent>
-    </EmployeeProfile>
-  );
-};
+        </TipContent>
+      </TipProfile>
+    );
+  }
+}
 
-Employee.propTypes = {
-  employee: PropTypes.shape({
-    first_name: PropTypes.string,
-    id: PropTypes.number,
-    last_name: PropTypes.string,
-    profile_photo: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    tagline: PropTypes.string,
-    type_id: PropTypes.number,
-    user_type: PropTypes.string,
-    username: PropTypes.string,
-    working_since: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  })
-};
-
-export default Employee;
+export default TipReiceived;
