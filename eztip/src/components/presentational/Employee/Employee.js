@@ -223,9 +223,9 @@ const Employee = props => {
             <button type="button" onClick={goToUpdateForm}>
               Update
             </button>
-            <button type="button" onClick={goToTipReceived}>
+            {/* <button type="button" onClick={goToTipReceived}>
               Tips Received
-            </button>
+            </button> */}
           </div>
         </div>
       </EmployeeProfileContent>
