@@ -99,7 +99,7 @@ const Employee = props => {
             <button type="button" onClick={goToUpdateForm}>
               Update
             </button>
-            <button type="button">Tips Received</button>
+            {/* <button type="button">Tips Received</button> */}
           </div>
         </div>
       </EmployeeProfileContent>
