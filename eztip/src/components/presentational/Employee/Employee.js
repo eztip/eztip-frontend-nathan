@@ -16,22 +16,38 @@ const EmployeeProfileContent = styled.div`
   margin: 35px 7%;
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  @media(max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   div:first-child {
     width: auto;
     max-width: 40%;
-
+    @media(max-width: 800px) {
+      max-width: 100%;
+    }
     img {
       object-fit: cover;
+      width: 300px;
+      height: 300px;
+      max-width: 100%;
+      border-radius: 50%;
     }
   }
 
   div:last-child {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 50%;
     margin-left: 3%;
-
+    @media(max-width: 800px) {
+        margin-top: 15px;
+        width: 80%;
+      }
     h1 {
       margin-bottom: 15px;
     }
@@ -51,10 +67,15 @@ const EmployeeProfileContent = styled.div`
       justify-content: space-between;
       flex-direction: row;
       margin: 0;
-
+      @media(max-width: 500px) {
+        flex-direction: column;
+      }
       button {
         margin: 0 0 10px;
         width: 47%;
+        @media(max-width: 500px) {
+          width:100%;
+        }
       }
     }
   }
